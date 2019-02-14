@@ -1,0 +1,142 @@
+fileFormatVersion: 2
+guid: 54538931e655ac542b09d5085a2f33d8
+timeCreated: 1492804736
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Plane.012
+    100002: //RootNode
+    100004: dark_stone_1
+    100006: dark_stone_2
+    100008: dark_stone_3
+    100010: dark_stone_4
+    100012: leaves_1
+    100014: leaves_2
+    100016: dark_stone_5
+    100018: dark_stone_6
+    100020: leaves_3
+    100022: leaves_4
+    100024: "\u043C"
+    400000: Plane.012
+    400002: //RootNode
+    400004: dark_stone_1
+    400006: dark_stone_2
+    400008: dark_stone_3
+    400010: dark_stone_4
+    400012: leaves_1
+    400014: leaves_2
+    400016: dark_stone_5
+    400018: dark_stone_6
+    400020: leaves_3
+    400022: leaves_4
+    400024: "\u043C"
+    2300000: Plane.012
+    2300002: //RootNode
+    2300004: dark_stone_1
+    2300006: dark_stone_2
+    2300008: dark_stone_3
+    2300010: dark_stone_4
+    2300012: leaves_1
+    2300014: leaves_2
+    2300016: dark_stone_5
+    2300018: dark_stone_6
+    2300020: leaves_3
+    2300022: leaves_4
+    2300024: "\u043C"
+    3300000: Plane.012
+    3300002: //RootNode
+    3300004: dark_stone_1
+    3300006: dark_stone_2
+    3300008: dark_stone_3
+    3300010: dark_stone_4
+    3300012: leaves_1
+    3300014: leaves_2
+    3300016: dark_stone_5
+    3300018: dark_stone_6
+    3300020: leaves_3
+    3300022: leaves_4
+    3300024: "\u043C"
+    4300000: Cube
+    4300002: Plane.012
+    4300004: dark_stone_4
+    4300006: dark_stone_3
+    4300008: dark_stone_2
+    4300010: leaves_2
+    4300012: dark_stone_1
+    4300014: leaves_1
+    4300016: dark_stone_6
+    4300018: dark_stone_5
+    4300020: leaves_4
+    4300022: leaves_3
+    4300024: "\u043C"
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
