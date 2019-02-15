@@ -51,7 +51,7 @@ LightmapSettings:
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
+    m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 10
@@ -1925,6 +1925,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obelisk (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1702723607651056, guid: fec6657b8700323499bf198c1cd25c4a, type: 3}
+      propertyPath: m_TagString
+      value: Visualizer
+      objectReference: {fileID: 0}
     - target: {fileID: 4441947727762266, guid: fec6657b8700323499bf198c1cd25c4a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -174.4
@@ -1981,10 +1985,6 @@ PrefabInstance:
     - target: {fileID: 1448446055472034, guid: fec6657b8700323499bf198c1cd25c4a, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1702723607651056, guid: fec6657b8700323499bf198c1cd25c4a, type: 3}
-      propertyPath: m_TagString
-      value: Visualizer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fec6657b8700323499bf198c1cd25c4a, type: 3}
@@ -12095,6 +12095,18 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 28
       objectReference: {fileID: 0}
+    - target: {fileID: 1228595344148140, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1024537772394414, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836381829821750, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1673738897278992, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -12103,19 +12115,7 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1836381829821750, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1889449452071016, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1228595344148140, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1024537772394414, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
