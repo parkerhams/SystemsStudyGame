@@ -14,7 +14,8 @@ public class ScaleLerper : MonoBehaviour
     public float speed = 2f;
     public float duration = 5f;
 
-
+    [SerializeField]
+    List<GameObject> foliage = new List<GameObject>();
 
     // Start is called before the first frame update
     IEnumerator Start()
