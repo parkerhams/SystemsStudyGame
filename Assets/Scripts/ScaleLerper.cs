@@ -10,13 +10,21 @@ public class ScaleLerper : MonoBehaviour
     //max scale meant to be controlled in editor - biggest size it can get 
     [SerializeField]
     Vector3 maxScale;
+    //checking scales later to them spawn more foliage around tree
+    Transform foliageSpawn;
     //can it also shrink down? Meant for if player has not completely grown the area
     [SerializeField]
     bool repeatable;
+    [SerializeField]
+    bool isGrowingFoliage;
+    [SerializeField]
+    static float foliageGrowth = 0.0f;
+    
     //foliage to add more details like grass or flowers around these larger scaled objects
     [SerializeField]
     List<GameObject> foliage = new List<GameObject>();
-    //scalableObject is a reference to itself for purpose of tracking what's growing
+    List<GameObject> spawnedFoliage = new List<GameObject>();
+    //scalableObject is a reference to the location where the foliage should spawn
     [SerializeField]
     GameObject scalableObject;
 
@@ -45,6 +53,25 @@ public class ScaleLerper : MonoBehaviour
         }
     }
 
+    IEnumerator Update()
+    {
+        foliageSpawn = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0, 0);
+
+        // .. and increase the foliageGrowth interpolater
+        foliageGrowth += 0.5f * Time.deltaTime;
+
+        // now check if the interpolator has reached maxScale
+        // grow the foliage by calling method
+        if (foliageGrowth > maxScale.y)
+        {
+            isGrowingFoliage = true;
+            if (isGrowingFoliage)
+            {
+                yield return FoliageSpawnLerp(foliageSpawn, maxScale, duration);
+            }
+        }
+    }
+
     //takes in two vector 3s - start scale and max scale - and how quickly they lerp as time
     public IEnumerator RepeatLerp(Vector3 a, Vector3 b, float time)
     {
@@ -60,9 +87,46 @@ public class ScaleLerper : MonoBehaviour
             i += Time.deltaTime * rate;
             //changing the world scale of the object to whatever it is on those three conditions
             transform.localScale = Vector3.Lerp(a, b, i);
+
             //set it to not repeatable once the cycle is done
             repeatable = false;
             yield return null;
+        }
+    }
+
+    /*IDEATION TIME
+             * 
+             * Trying to spawn foliage at a certain point in the growth lerp
+             * I.e. once it hits like halfway between those two points, call the function 
+             * that will then instantiate the foliage
+             * 
+             * Then to avoid spawning the same foliage way too many times, have another list that 
+             * as you move through the for loop to spawn, you're adding spawned foliage to the other list
+             * Then compare the list sizes and if the list of spawned foliage is equal to the 
+             * list of amount of foliage created (controlled in the inspector), then stop spawning
+             * Then scale it with the other stuff
+             */
+    public IEnumerator FoliageSpawnLerp(Transform location, Vector3 size, float period)
+    {
+        //rate of growth
+        float fgrowth = 0.0f;
+        float frate = (1.0f / period) * speed;
+        
+
+        for(int i = 0; i < foliage.Count; i++)
+        {
+            var foliageInstance = Instantiate(foliage[i], location);
+            spawnedFoliage.Add(foliageInstance);
+
+            if(spawnedFoliage.Count >= foliage.Count)
+            {
+                while(fgrowth < 1f)
+                {
+                    fgrowth += Time.deltaTime * frate;
+                    transform.localScale = Vector3.Lerp(location, size, period);
+                    yield return null;
+                }
+            }
         }
     }
 
