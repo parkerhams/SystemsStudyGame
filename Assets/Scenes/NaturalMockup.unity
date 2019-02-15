@@ -285,6 +285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 0
+  foliage: []
+  scalableObject: {fileID: 0}
   speed: 0.2
   duration: 10
 --- !u!1 &200318182 stripped
@@ -307,6 +309,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 1
+  foliage: []
+  scalableObject: {fileID: 200318182}
   speed: 0.2
   duration: 20
 --- !u!1 &207576767
@@ -360,7 +364,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 1
-  speed: 2
+  foliage: []
+  scalableObject: {fileID: 254092766}
+  speed: 0.3
   duration: 20
 --- !u!1 &267327160 stripped
 GameObject:
@@ -382,6 +388,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 2, y: 2, z: 2}
   repeatable: 1
+  foliage: []
+  scalableObject: {fileID: 267327160}
   speed: 0.4
   duration: 15
 --- !u!1 &303984881
@@ -435,6 +443,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 1
+  foliage: []
+  scalableObject: {fileID: 315142585}
   speed: 0.2
   duration: 20
 --- !u!1 &317363370
@@ -1129,6 +1139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 0
+  foliage: []
+  scalableObject: {fileID: 0}
   speed: 0.2
   duration: 20
 --- !u!1001 &729932815
@@ -1561,6 +1573,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 0
+  foliage: []
+  scalableObject: {fileID: 0}
   speed: 0.2
   duration: 18
 --- !u!1 &988856149
@@ -1652,6 +1666,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 0
+  foliage: []
+  scalableObject: {fileID: 0}
   speed: 0.2
   duration: 15
 --- !u!1 &1012187987
@@ -1777,6 +1793,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 0
+  foliage: []
+  scalableObject: {fileID: 0}
   speed: 0.2
   duration: 18
 --- !u!1001 &1051633277
@@ -2028,6 +2046,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 0
+  foliage: []
+  scalableObject: {fileID: 0}
   speed: 0.2
   duration: 18
 --- !u!1 &1289475074
@@ -12023,6 +12043,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fir_tree_2_red (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1156870080549000, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4818933448493262, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
       propertyPath: m_LocalPosition.x
       value: 59.39
@@ -12054,6 +12078,30 @@ PrefabInstance:
     - target: {fileID: 4818933448493262, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
       propertyPath: m_RootOrder
       value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673738897278992, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232120164457342, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836381829821750, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1889449452071016, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228595344148140, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1024537772394414, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
@@ -12290,6 +12338,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 1
+  foliage: []
+  scalableObject: {fileID: 0}
   speed: 0.2
   duration: 20
 --- !u!1001 &2094838808
