@@ -53,9 +53,12 @@ public class ScaleLerper : MonoBehaviour
         }
     }
 
-    IEnumerator Update()
+    void Update()
     {
-        foliageSpawn = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0, 0);
+        //foliageSpawn = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0, 0);
+        Vector3 temp9 = new Vector3();
+        temp9 = foliageSpawn.transform.position;
+        temp9 = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0);
 
         // .. and increase the foliageGrowth interpolater
         foliageGrowth += 0.5f * Time.deltaTime;
@@ -67,7 +70,7 @@ public class ScaleLerper : MonoBehaviour
             isGrowingFoliage = true;
             if (isGrowingFoliage)
             {
-                yield return FoliageSpawnLerp(foliageSpawn, maxScale, duration);
+                FoliageSpawnLerp(foliageSpawn, maxScale, duration);
             }
         }
     }
@@ -123,7 +126,7 @@ public class ScaleLerper : MonoBehaviour
                 while(fgrowth < 1f)
                 {
                     fgrowth += Time.deltaTime * frate;
-                    transform.localScale = Vector3.Lerp(location, size, period);
+                    transform.localScale = Vector3.Lerp(location.position, size, period);
                     yield return null;
                 }
             }

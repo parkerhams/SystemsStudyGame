@@ -285,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 0
+  isGrowingFoliage: 0
   foliage: []
   scalableObject: {fileID: 0}
   speed: 0.2
@@ -309,7 +310,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 1
-  foliage: []
+  isGrowingFoliage: 0
+  foliage:
+  - {fileID: 1016146664764628, guid: 7eb6eb9f8fdd2a44399cac99ba9c81ac, type: 3}
+  - {fileID: 1189804704220276, guid: 4fffc3a50ead29d4bbb3629261233b07, type: 3}
+  - {fileID: 1163984226824354, guid: 1aef7ce81986e684280ee321ea6357ab, type: 3}
   scalableObject: {fileID: 200318182}
   speed: 0.2
   duration: 20
@@ -364,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 1
+  isGrowingFoliage: 0
   foliage: []
   scalableObject: {fileID: 254092766}
   speed: 0.3
@@ -388,7 +394,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 2, y: 2, z: 2}
   repeatable: 1
-  foliage: []
+  isGrowingFoliage: 0
+  foliage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   scalableObject: {fileID: 267327160}
   speed: 0.4
   duration: 15
@@ -443,6 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 1
+  isGrowingFoliage: 0
   foliage: []
   scalableObject: {fileID: 315142585}
   speed: 0.2
@@ -1139,6 +1150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 0
+  isGrowingFoliage: 0
   foliage: []
   scalableObject: {fileID: 0}
   speed: 0.2
@@ -1573,6 +1585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 0
+  isGrowingFoliage: 0
   foliage: []
   scalableObject: {fileID: 0}
   speed: 0.2
@@ -1666,6 +1679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 0
+  isGrowingFoliage: 0
   foliage: []
   scalableObject: {fileID: 0}
   speed: 0.2
@@ -1793,6 +1807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 0
+  isGrowingFoliage: 0
   foliage: []
   scalableObject: {fileID: 0}
   speed: 0.2
@@ -2046,6 +2061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 0
+  isGrowingFoliage: 0
   foliage: []
   scalableObject: {fileID: 0}
   speed: 0.2
@@ -12338,6 +12354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: {x: 3, y: 3, z: 3}
   repeatable: 1
+  isGrowingFoliage: 0
   foliage: []
   scalableObject: {fileID: 0}
   speed: 0.2
