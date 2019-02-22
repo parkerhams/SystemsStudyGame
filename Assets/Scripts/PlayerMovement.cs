@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float stoppingDrag;
   
-    //basically accelerate value, the gas pedal
+    [Tooltip("basically accelerate value, the gas pedal")]
     [SerializeField]
     float thrust;
     [SerializeField]
