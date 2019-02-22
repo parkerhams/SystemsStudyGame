@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //float values for drag - moving drag and stopping drag
+    [SerializeField]
+    private float movingDrag;
+    [SerializeField]
+    private float stoppingDrag;
+
+
     ///<summary> Meant to affect player movement, we are using the 
     ///thrust as a gas pedal, the rigidbody for our physics and force,
     ///and the camSpeed to affect our thrust further.
@@ -11,9 +18,6 @@ public class PlayerMovement : MonoBehaviour
     //basically accelerate value, the gas pedal
     [SerializeField]
     float thrust;
-    //how fast cam moves
-    [SerializeField]
-    float camSpeed = 180;
     [SerializeField]
     Rigidbody playerRigidbody;
     #endregion
@@ -21,14 +25,10 @@ public class PlayerMovement : MonoBehaviour
 
     #region Reading Camera values to determine direction
     //actually calling vector3 position values of the main camera
-    [SerializeField]
-    Transform cam;
     //heading is calling
     //[SerializeField]
     //float heading = 0;
     //movement!
-    [SerializeField]
-    Vector3 inputVector;
     //cam location / position values with cam.forward and cam.right
     #endregion
 
@@ -39,16 +39,19 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        //set the input to match the forward value as we call each input axis
-        inputVector = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
-        //normalize it so the value does not stutter, multiply by the thrust to get speed changes
-        inputVector = inputVector.normalized * thrust;
-
-        //CamRotation(); ---- Now in Camera Controller, could be reference later in controller
 
         //using AddForce, we multiply the input (vertical and horziontal) by the thrust
         //playerRigidbody.AddForce(inputVector * thrust);
-        playerRigidbody.AddForce(cam.forward * thrust);
+        if (Input.GetButton("Thrust"))
+        {
+            playerRigidbody.drag = movingDrag;
+            
+            playerRigidbody.AddForce(playerRigidbody.transform.forward * thrust);
+        }
+        else
+        {
+            playerRigidbody.drag = stoppingDrag;
+        }
 
         //Basically, the simplest addforce of camera.forward is dependent on a camera follow script -
         //for some reason, not really working on play if that follow script is deactivated in the editor
