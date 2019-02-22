@@ -4,18 +4,30 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    #region Camera behavior variables
     //player transform values set in inspector
-    public Transform target;
+    [SerializeField]
+    Transform target;
     //distance camera is away from player
-    public Vector3 offset;
+    [Tooltip("This is going to be used for position of camera to player")]
+    [SerializeField]
+    Vector3 offset;
     //to be used later if we need to halt movement in any way
-    public bool useOffsetValues;
+    [Tooltip("Temporarily to be used to check in order to change the target position")]
+    [SerializeField]
+    bool useOffsetValues;
     //how quickly camera rotates around target
-    public float rotateSpeed;
+    [Tooltip("used for camera position/rotation speed with mouse")]
+    [SerializeField]
+    float rotateSpeed;
     //to set a minimum value the camera cannot go below
-    public float minZHeight = .5f;
+    [Tooltip("camera has this z value relation to player")]
+    [SerializeField]
+    float minZHeight = .5f;
     //pivot for rotation and alignment - an empty
-    public Transform pivot;
+    [SerializeField]
+    Transform pivot;
+    #endregion
 
     void Start()
     {
@@ -67,6 +79,37 @@ public class CameraController : MonoBehaviour
         transform.LookAt(target);
 
     }
+    //**Possibly Redundant, but another version of what's being called in update above here,
+    //does not have the float value heading for cam offset 
 
+    //followed along with tutorial from lmhpoly - but now calling this function causes bad camera glitches. 
+    //Keeping for reference later
+    //void CamRotation()
+    //{
+    //    //heading, in this case, is meant to take in the mouse X and set a movement speed for the camera
+    //    heading += Input.GetAxis("Mouse X") * Time.deltaTime*camSpeed;
+    //    //with a euler angle, calling that rotation to be set
+    //    cam.rotation = Quaternion.Euler(0, heading, 0);
 
+    //    //inputVector is basically referencing the direct input of player and setting it a new vector 3 that calls the input axis
+    //    inputVector = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+    //    //clamp magnitude being called so we can bind it to this value
+    //    inputVector = Vector3.ClampMagnitude(inputVector, 1);
+
+    //    //calling these values and normalizing them sets a limit on y movement to avoid unwated rotation, ideally
+    //    cam.forward.y = 0;
+    //    cam.right.y = 0;
+
+    //    cam.right.normalized;
+    //    cam.forward.normalized;
+
+    //    //calling the forward transform of the player to be added based on the cam axes and input axes
+    //    transform.forward += (transform.position += (cam.forward * inputVector.y + cam.right * inputVector.x) * Time.deltaTime * thrust);
+
+    //    //using Vector3s to more directly set the cam/player positions together
+    //    Vector3 relativePos = cam.position - transform.position;
+    //    Quaternion playerCamRotation = Quaternion.LookRotation(relativePos, Vector3.up);
+    //    transform.rotation = playerCamRotation;
+
+    //}
 }
