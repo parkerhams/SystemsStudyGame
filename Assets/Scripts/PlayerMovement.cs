@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,8 +20,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody playerRigidbody;
 
+    [Tooltip("This FreeLook refers to the values of a Cinemachine camera, " +
+        "in this case Free Look Cam")]
     [SerializeField]
-    CinemachineCameraOffset cam;
+    CinemachineFreeLook freeLookCam;
 
     void Start()
     {
@@ -32,10 +35,10 @@ public class PlayerMovement : MonoBehaviour
         //using AddForce, we multiply the input (vertical and horziontal) by the thrust
         if (Input.GetButton("Thrust"))
         {
-            playerRigidbody.rotation = Quaternion.Euler(cam.m_Offset);
-
             playerRigidbody.drag = movingDrag;            
             playerRigidbody.AddForce(playerRigidbody.transform.forward * thrust);
+
+            playerRigidbody.rotation = Quaternion.Euler(freeLookCam.transform.localEulerAngles);
         }
         else
         {
