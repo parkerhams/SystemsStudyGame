@@ -14,10 +14,13 @@ public class PlayerMovement : MonoBehaviour
     
     [Tooltip("basically accelerate value, the gas pedal")]
     [SerializeField]
-    float thrust;
+    private float thrust;
 
     [SerializeField]
-    Rigidbody playerRigidbody;
+    private Rigidbody playerRigidbody;
+
+    [SerializeField]
+    CinemachineCameraOffset cam;
 
     void Start()
     {
@@ -29,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
         //using AddForce, we multiply the input (vertical and horziontal) by the thrust
         if (Input.GetButton("Thrust"))
         {
+            playerRigidbody.rotation = Quaternion.Euler(cam.m_Offset);
+
             playerRigidbody.drag = movingDrag;            
             playerRigidbody.AddForce(playerRigidbody.transform.forward * thrust);
         }
