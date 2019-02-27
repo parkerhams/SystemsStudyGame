@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
             //playerRigidbody.transform.rotation = Quaternion.LookRotation(newDir);
 
             //playerRigidbody.transform.rotation = Quaternion.Euler(step, freeLookCam.m_Heading.m_Bias, thrust);
-            playerRigidbody.transform.rotation = Quaternion.Euler(freeLookCam.transform.position.x, freeLookCam.transform.position.y, freeLookCam.transform.position.z);
+            
 
             playerRigidbody.drag = movingDrag;            
             playerRigidbody.AddForce(playerRigidbody.transform.forward * thrust);
