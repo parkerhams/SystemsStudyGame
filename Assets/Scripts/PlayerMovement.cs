@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
         //using AddForce, we multiply the input (vertical and horziontal) by the thrust
         if (Input.GetButton("Thrust"))
         {
-            playerRigidbody.transform.position = freeLookCam.transform.forward * thrust * Time.deltaTime;
             playerRigidbody.drag = movingDrag;            
             playerRigidbody.AddForce(playerRigidbody.transform.forward * thrust);
         }
