@@ -17,6 +17,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float thrust;
 
+    //[Tooltip("Used for the new rotation direction as set by camera aim")]
+    //[SerializeField]
+    //private Vector3 direction;
+
     [SerializeField]
     private Rigidbody playerRigidbody;
 
@@ -35,6 +39,18 @@ public class PlayerMovement : MonoBehaviour
         //using AddForce, we multiply the input (vertical and horziontal) by the thrust
         if (Input.GetButton("Thrust"))
         {
+            //Vector3 targetDir = freeLookCam.transform.position - playerRigidbody.transform.position;
+
+            //// The step size is equal to speed times frame time.
+            //float step = 3f * Time.deltaTime;
+
+            //Vector3 newDir = Vector3.RotateTowards(playerRigidbody.transform.forward, targetDir, step, 0.0f);
+
+            //playerRigidbody.transform.rotation = Quaternion.LookRotation(newDir);
+
+            //playerRigidbody.transform.rotation = Quaternion.Euler(step, freeLookCam.m_Heading.m_Bias, thrust);
+            playerRigidbody.transform.rotation = Quaternion.Euler(freeLookCam.transform.position.x, freeLookCam.transform.position.y, freeLookCam.transform.position.z);
+
             playerRigidbody.drag = movingDrag;            
             playerRigidbody.AddForce(playerRigidbody.transform.forward * thrust);
         }
