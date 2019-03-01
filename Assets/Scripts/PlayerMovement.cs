@@ -17,17 +17,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float thrust;
 
-    //[Tooltip("Used for the new rotation direction as set by camera aim")]
-    //[SerializeField]
-    //private Vector3 direction;
-
     [SerializeField]
     private Rigidbody playerRigidbody;
 
     [Tooltip("This FreeLook refers to the values of a Cinemachine camera, " +
         "in this case Free Look Cam")]
     [SerializeField]
-    CinemachineFreeLook freeLookCam;
+    Camera freeLookCam;
+
+    [Tooltip("The object we rotate to show which direction the player is aiming.")]
+    [SerializeField]
+    private Transform pivotPoint;
+
+    [SerializeField]
+    Vector3 aimDirection;
 
     void Start()
     {
@@ -36,27 +39,47 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        aimDirection = new Vector3(freeLookCam.transform.position.x, 0, freeLookCam.transform.position.y);
+
+        UpdateAimIndicator();
         //using AddForce, we multiply the input (vertical and horziontal) by the thrust
         if (Input.GetButton("Thrust"))
         {
-            //Vector3 targetDir = freeLookCam.transform.position - playerRigidbody.transform.position;
-
-            //// The step size is equal to speed times frame time.
-            //float step = 3f * Time.deltaTime;
-
-            //Vector3 newDir = Vector3.RotateTowards(playerRigidbody.transform.forward, targetDir, step, 0.0f);
-
-            //playerRigidbody.transform.rotation = Quaternion.LookRotation(newDir);
-
-            //playerRigidbody.transform.rotation = Quaternion.Euler(step, freeLookCam.m_Heading.m_Bias, thrust);
-            
-
             playerRigidbody.drag = movingDrag;            
             playerRigidbody.AddForce(playerRigidbody.transform.forward * thrust);
+        }
+        else if(Input.GetButton("Jump"))
+        {
+            SetPlayerRotation();
         }
         else
         {
             playerRigidbody.drag = stoppingDrag;
         }
     }
+
+    void SetPlayerRotation()
+    {
+        transform.rotation = Quaternion.Euler(freeLookCam.transform.forward);
+    }
+
+   
+
+/// <summary>
+/// Rotate and scale the pivot point based on the aim direction.
+/// Our aim indicator is a child of the pivot point game object,
+/// so it will rotate and scale along with it's parent.
+/// </summary>
+    private void UpdateAimIndicator()
+    {
+        // Magnitude is the "length" of the vector.
+        // If we're not pushing past our deadzone, ignore input.
+        // If we are, rotate and scale the pivot point based on the input.
+        // The rotation will indicate the direction we will putt in.
+    
+        pivotPoint.rotation = Quaternion.LookRotation(aimDirection, transform.up);
+        pivotPoint.localScale = new Vector3(pivotPoint.localScale.x, pivotPoint.localScale.y, aimDirection.magnitude);
+        
+    }
+
 }
