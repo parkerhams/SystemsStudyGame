@@ -20,16 +20,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody playerRigidbody;
 
-    [Tooltip("This FreeLook refers to the values of a Cinemachine camera, " +
-        "in this case Free Look Cam")]
+    [Tooltip("Refers to the actual scene camera - this what we refer to" +
+        "to determine direction we are facing")]
     [SerializeField]
     Camera freeLookCam;
 
-    [Tooltip("The object we rotate to show which direction the player is aiming.")]
-    [SerializeField]
-    private Transform pivotPoint;
-
-    [SerializeField]
     Vector3 aimDirection;
 
     void Start()
@@ -40,15 +35,13 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         aimDirection = new Vector3(freeLookCam.transform.position.x, 0, freeLookCam.transform.position.y);
-
-        UpdateAimIndicator();
         //using AddForce, we multiply the input (vertical and horziontal) by the thrust
         if (Input.GetButton("Thrust"))
         {
             playerRigidbody.drag = movingDrag;            
             playerRigidbody.AddForce(playerRigidbody.transform.forward * thrust);
         }
-        else if(Input.GetButton("Jump"))
+        else if(Input.GetButton("AimForward"))
         {
             SetPlayerRotation();
         }
@@ -63,23 +56,5 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(freeLookCam.transform.forward);
     }
 
-   
-
-/// <summary>
-/// Rotate and scale the pivot point based on the aim direction.
-/// Our aim indicator is a child of the pivot point game object,
-/// so it will rotate and scale along with it's parent.
-/// </summary>
-    private void UpdateAimIndicator()
-    {
-        // Magnitude is the "length" of the vector.
-        // If we're not pushing past our deadzone, ignore input.
-        // If we are, rotate and scale the pivot point based on the input.
-        // The rotation will indicate the direction we will putt in.
-    
-        pivotPoint.rotation = Quaternion.LookRotation(aimDirection, transform.up);
-        pivotPoint.localScale = new Vector3(pivotPoint.localScale.x, pivotPoint.localScale.y, aimDirection.magnitude);
-        
-    }
 
 }
