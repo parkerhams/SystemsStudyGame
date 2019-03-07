@@ -43,18 +43,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(Input.GetButton("AimForward"))
         {
-            SetPlayerRotation();
+            //transform.rotation = Quaternion.RotateTowards(transform.rotation, freeLookCam.transform.rotation, (freeLookCam.transform.forward.z - playerRigidbody.transform.forward.z));
+            transform.rotation = freeLookCam.transform.rotation;
         }
         else
         {
             playerRigidbody.drag = stoppingDrag;
         }
     }
-
-    void SetPlayerRotation()
-    {
-        transform.rotation = Quaternion.Euler(freeLookCam.transform.forward);
-    }
-
-
 }
