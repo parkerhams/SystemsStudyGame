@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
             playerRigidbody.drag = movingDrag;
 
             playerRigidbody.transform.forward = freeLookCam.transform.forward;
-            playerRigidbody.angularDrag = rotationDrag;
+            playerRigidbody.angularDrag = rotationDrag + aimDirection.y;
 
             playerRigidbody.AddForce(playerRigidbody.transform.forward * thrust);           
         }
