@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    #region Unity Editor private Serialized Variables
     [Tooltip("float values for drag - moving drag")]
     [SerializeField]
     private float movingDrag;
@@ -24,6 +25,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody playerRigidbody;
 
+    [Tooltip("Maximum speed so Rigidbody doesn't always accelerate")]
+    [SerializeField]
+    private float maxSpeed = 10f;
+    #endregion
+
     [Tooltip("Refers to the scene's Main Camera gameobject, instead")]
     [SerializeField]
     Camera freeLookCam;
@@ -41,19 +47,38 @@ public class PlayerMovement : MonoBehaviour
         //using AddForce, we multiply the input (vertical and horziontal) by the thrust
         if (Input.GetButton("Thrust"))
         {
-            transform.rotation = freeLookCam.transform.rotation;
-            playerRigidbody.drag = movingDrag;
-
-            playerRigidbody.transform.forward = freeLookCam.transform.forward;
-            playerRigidbody.angularDrag = rotationDrag + aimDirection.y;
-
-            playerRigidbody.AddForce(playerRigidbody.transform.forward * thrust);           
+            Accelerate();
+            NormalizeAccelerate();
         }
         else
         {
             playerRigidbody.drag = stoppingDrag;
             //set player's angular drag to stopping drag so that player stops rotating when not accelerating
             playerRigidbody.angularDrag = stoppingDrag;
+        }
+    }
+
+    private void Accelerate()
+    {
+        transform.rotation = freeLookCam.transform.rotation;
+        playerRigidbody.drag = movingDrag;
+
+        playerRigidbody.transform.forward = freeLookCam.transform.forward;
+        playerRigidbody.angularDrag = rotationDrag + aimDirection.y;
+
+        playerRigidbody.AddForce(playerRigidbody.transform.forward * thrust);
+    }
+
+    private void NormalizeAccelerate()
+    {
+        Vector3 newVelocity = playerRigidbody.velocity;
+        
+        newVelocity.x = Mathf.Clamp(playerRigidbody.velocity.x, -maxSpeed, maxSpeed);
+        playerRigidbody.velocity = newVelocity;
+
+        if (playerRigidbody.velocity.magnitude > maxSpeed)
+        {
+            playerRigidbody.velocity = playerRigidbody.velocity.normalized * maxSpeed;
         }
     }
 }
