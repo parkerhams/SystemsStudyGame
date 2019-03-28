@@ -75,10 +75,5 @@ public class PlayerMovement : MonoBehaviour
         
         newVelocity = Vector3.ClampMagnitude(playerRigidbody.velocity, maxSpeed);
         playerRigidbody.velocity = newVelocity;
-
-        //if (playerRigidbody.velocity.magnitude > maxSpeed)
-        //{
-        //    playerRigidbody.velocity = playerRigidbody.velocity.normalized * maxSpeed;
-        //}
     }
 }
