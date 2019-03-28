@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody playerRigidbody;
 
-    [Tooltip("Maximum speed so Rigidbody doesn't always accelerate")]
+    [Tooltip("Player's velocity never goes over this limit")]
     [SerializeField]
     private float maxSpeed = 10f;
     #endregion
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButton("Thrust"))
         {
             Accelerate();
-            NormalizeAccelerate();
+            AdjustForMaxSpeed();
         }
         else
         {
@@ -69,16 +69,16 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody.AddForce(playerRigidbody.transform.forward * thrust);
     }
 
-    private void NormalizeAccelerate()
+    private void AdjustForMaxSpeed()
     {
         Vector3 newVelocity = playerRigidbody.velocity;
         
-        newVelocity.x = Mathf.Clamp(playerRigidbody.velocity.x, -maxSpeed, maxSpeed);
+        newVelocity = Vector3.ClampMagnitude(playerRigidbody.velocity, maxSpeed);
         playerRigidbody.velocity = newVelocity;
 
-        if (playerRigidbody.velocity.magnitude > maxSpeed)
-        {
-            playerRigidbody.velocity = playerRigidbody.velocity.normalized * maxSpeed;
-        }
+        //if (playerRigidbody.velocity.magnitude > maxSpeed)
+        //{
+        //    playerRigidbody.velocity = playerRigidbody.velocity.normalized * maxSpeed;
+        //}
     }
 }
