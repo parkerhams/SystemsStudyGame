@@ -570,7 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 1.18, z: -7.52}
+  m_FollowOffset: {x: 0, y: -0.4390285, z: -6.852855}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -683,7 +683,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295130920}
-  m_LocalRotation: {x: 0.084486246, y: 0.011633846, z: -0.0009865004, w: 0.99635625}
+  m_LocalRotation: {x: 0.084486246, y: 0.011633847, z: -0.0009865005, w: 0.99635625}
   m_LocalPosition: {x: -67, y: -8, z: 112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -759,7 +759,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330644358}
-  m_LocalRotation: {x: -0.09156967, y: -0.0169544, z: -0.031971216, w: 0.9951409}
+  m_LocalRotation: {x: -0.19153497, y: -0.03206404, z: -0.0339725, w: 0.98037344}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -843,8 +843,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539891925}
-  m_LocalRotation: {x: -0.007628585, y: -0.000000034186485, z: -2.608021e-10, w: 0.9999709}
-  m_LocalPosition: {x: -67, y: -8.82, z: 111.48}
+  m_LocalRotation: {x: -0.094949365, y: -0.011731696, z: -0.0011190509, w: 0.9954124}
+  m_LocalPosition: {x: -67, y: -10.439029, z: 112.14715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1202,7 +1202,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768999456}
-  m_LocalRotation: {x: 0.13259201, y: 0.7822506, z: -0.1782076, w: 0.58201844}
+  m_LocalRotation: {x: 0.13259202, y: 0.7822506, z: -0.17820762, w: 0.58201844}
   m_LocalPosition: {x: -77, y: -4.98271, z: 122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2080,7 +2080,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445298435}
   m_LocalRotation: {x: 0.044831034, y: 0.015341253, z: 0.03152553, w: -0.99837923}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.01860804, y: 1.4836229, z: -0.9299753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 187277160}
@@ -2160,7 +2160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 1.18, z: -7.52}
+  m_FollowOffset: {x: 0, y: -0.4390285, z: -6.852855}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2285,7 +2285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 1.18, z: -7.52}
+  m_FollowOffset: {x: 0, y: -0.4390285, z: -6.852855}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -3189,7 +3189,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820137053}
-  m_LocalRotation: {x: -0.04260075, y: -0.015263611, z: -0.031509873, w: 0.99847853}
+  m_LocalRotation: {x: -0.15170678, y: -0.031107696, z: -0.032681804, w: 0.9873952}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3728,7 +3728,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0.5
+    Value: 0.3
     m_MaxSpeed: 2
     m_AccelTime: 0.2
     m_DecelTime: 0.1
@@ -3799,7 +3799,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919942495}
   m_LocalRotation: {x: 0.08448379, y: 0.01389751, z: -0.0011784425, w: 0.9963272}
-  m_LocalPosition: {x: -67, y: -8.82, z: 111.48}
+  m_LocalPosition: {x: -67, y: -10.439029, z: 112.14715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1445298437}
@@ -4088,17 +4088,22 @@ PrefabInstance:
     - target: {fileID: 3018280269225403240, guid: f4909d817bc0fa347baa061f81c9b955,
         type: 3}
       propertyPath: maxSpeed
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3018280269225403240, guid: f4909d817bc0fa347baa061f81c9b955,
         type: 3}
       propertyPath: movingDrag
-      value: 1
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 3018280269225403240, guid: f4909d817bc0fa347baa061f81c9b955,
         type: 3}
       propertyPath: thrust
-      value: 15
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018280269225403240, guid: f4909d817bc0fa347baa061f81c9b955,
+        type: 3}
+      propertyPath: stoppingDrag
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3018280269225403222, guid: f4909d817bc0fa347baa061f81c9b955,
         type: 3}
