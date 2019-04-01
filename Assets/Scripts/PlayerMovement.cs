@@ -13,10 +13,6 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("float values for drag - stopping drag")]
     [SerializeField]
     private float stoppingDrag;
-
-    [Tooltip("float values for angular drag - rotation movement drag")]
-    [SerializeField]
-    private float rotationDrag;
     
     [Tooltip("accelaration")]
     [SerializeField]
@@ -64,8 +60,6 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody.drag = movingDrag;
 
         playerRigidbody.transform.forward = freeLookCam.transform.forward;
-        playerRigidbody.angularDrag = rotationDrag + aimDirection.y;
-
         playerRigidbody.AddForce(playerRigidbody.transform.forward * thrust);
     }
 
