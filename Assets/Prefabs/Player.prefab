@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 742335237}
   - component: {fileID: 742335236}
   - component: {fileID: 742335235}
+  - component: {fileID: 4772215835215835200}
   m_Layer: 0
   m_Name: Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &742335234
 Transform:
   m_ObjectHideFlags: 0
@@ -58,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 30c0afdc372151b438e78266a23c194b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,6 +92,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4772215835215835200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742335233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd25ed6d7582a24e931f2361483106a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  auraSphere: {fileID: 742335233}
+  lerpSpeed: 1
+  deactivatedAuraColor: {r: 0.8679245, g: 0.27429688, b: 0.27429688, a: 0.34117648}
+  activatedAuraColor: {r: 0.27727836, g: 0.8773585, b: 0.535308, a: 0.69803923}
+  startLerpTime: 0
 --- !u!1 &3018280269225403247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2476,6 +2494,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3018280269225403221}
     m_Modifications:
+    - target: {fileID: 2917202205030483497, guid: 2f206d5b35599ea47b8b3936ec90f290,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerParticleTrails
+      objectReference: {fileID: 0}
     - target: {fileID: 2917202205030483496, guid: 2f206d5b35599ea47b8b3936ec90f290,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2530,11 +2553,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2917202205030483497, guid: 2f206d5b35599ea47b8b3936ec90f290,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerParticleTrails
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f206d5b35599ea47b8b3936ec90f290, type: 3}
