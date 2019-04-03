@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ScaleLerper : MonoBehaviour
 {
-    //base size for any trees or foliage that will scale
+    [Tooltip("base size for any trees or foliage that will scale")]
     Vector3 minScale;
 
-    //max scale meant to be controlled in editor - biggest size it can get 
+    [Tooltip("max scale meant to be controlled in editor - biggest size it can get")] 
     [SerializeField]
     Vector3 maxScale;
-    //checking scales later to them spawn more foliage around tree
+    [Tooltip("checking scales later to them spawn more foliage around tree")]
     Transform foliageSpawn;
-    //can it also shrink down? Meant for if player has not completely grown the area
+    [Tooltip("can it also shrink down - Meant for if player has not completely grown the area")]
     [SerializeField]
     bool repeatable;
     [SerializeField]
@@ -20,26 +20,21 @@ public class ScaleLerper : MonoBehaviour
     [SerializeField]
     static float foliageGrowth = 0.0f;
     
-    //foliage to add more details like grass or flowers around these larger scaled objects
+    [Tooltip("foliage to add more details like grass or flowers around these larger scaled objects")]
     [SerializeField]
     List<GameObject> foliage = new List<GameObject>();
     List<GameObject> spawnedFoliage = new List<GameObject>();
-    //scalableObject is a reference to the location where the foliage should spawn
+    [Tooltip("scalableObject is a reference to the location where the foliage should spawn")]
     [SerializeField]
     GameObject scalableObject;
 
-    //how quickly it grows
+    [Tooltip("how quickly it grows")]
     public float speed = 2f;
-    //how long to process of growing takes place
+    [Tooltip("how long it takes to reach fully grown")]
     public float duration = 5f;
 
-    
-
-    // Start is called before the first frame update
     IEnumerator Start()
     {
-        //scalableObject = transform.localPosition;
-
         //smallest scale is whatever it is set to in world space
         minScale = transform.localScale;
         //if it can grow, it will call other coroutine to begin scale lerp
@@ -47,7 +42,7 @@ public class ScaleLerper : MonoBehaviour
         {
             //lerp scale of model UP
             yield return RepeatLerp(minScale, maxScale, duration);
-            //lerp scale down for fluctuation?
+            //lerp scale down for fluctuation
             yield return RepeatLerp(maxScale, minScale, duration);
             
         }
@@ -55,7 +50,6 @@ public class ScaleLerper : MonoBehaviour
 
     void Update()
     {
-        //foliageSpawn = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0, 0);
         Vector3 temp9 = new Vector3();
         temp9 = foliageSpawn.transform.position;
         temp9 = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0);
@@ -86,7 +80,6 @@ public class ScaleLerper : MonoBehaviour
         while(i < 1f)
         {
             //this is mine though hehe
-            //yeet
             i += Time.deltaTime * rate;
             //changing the world scale of the object to whatever it is on those three conditions
             transform.localScale = Vector3.Lerp(a, b, i);
@@ -97,18 +90,6 @@ public class ScaleLerper : MonoBehaviour
         }
     }
 
-    /*IDEATION TIME
-             * 
-             * Trying to spawn foliage at a certain point in the growth lerp
-             * I.e. once it hits like halfway between those two points, call the function 
-             * that will then instantiate the foliage
-             * 
-             * Then to avoid spawning the same foliage way too many times, have another list that 
-             * as you move through the for loop to spawn, you're adding spawned foliage to the other list
-             * Then compare the list sizes and if the list of spawned foliage is equal to the 
-             * list of amount of foliage created (controlled in the inspector), then stop spawning
-             * Then scale it with the other stuff
-             */
     public IEnumerator FoliageSpawnLerp(Transform location, Vector3 size, float period)
     {
         //rate of growth
@@ -133,5 +114,17 @@ public class ScaleLerper : MonoBehaviour
         }
     }
 
-    
+
+    /*IDEATION TIME
+             * 
+             * Trying to spawn foliage at a certain point in the growth lerp
+             * I.e. once it hits like halfway between those two points, call the function 
+             * that will then instantiate the foliage
+             * 
+             * Then to avoid spawning the same foliage way too many times, have another list that 
+             * as you move through the for loop to spawn, you're adding spawned foliage to the other list
+             * Then compare the list sizes and if the list of spawned foliage is equal to the 
+             * list of amount of foliage created (controlled in the inspector), then stop spawning
+             * Then scale it with the other stuff
+             */
 }
