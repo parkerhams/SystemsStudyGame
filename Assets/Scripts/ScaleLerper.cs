@@ -10,63 +10,94 @@ public class ScaleLerper : MonoBehaviour
     [Tooltip("max scale meant to be controlled in editor - biggest size it can get")] 
     [SerializeField]
     Vector3 maxScale;
+
     [Tooltip("checking scales later to them spawn more foliage around tree")]
     Transform foliageSpawn;
+
     [Tooltip("can it also shrink down - Meant for if player has not completely grown the area")]
     [SerializeField]
-    bool repeatable;
+    bool repeatable = false;
+
     [SerializeField]
     bool isGrowingFoliage;
+
     [SerializeField]
     static float foliageGrowth = 0.0f;
     
     [Tooltip("foliage to add more details like grass or flowers around these larger scaled objects")]
     [SerializeField]
     List<GameObject> foliage = new List<GameObject>();
+
     List<GameObject> spawnedFoliage = new List<GameObject>();
+
     [Tooltip("scalableObject is a reference to the location where the foliage should spawn")]
     [SerializeField]
     GameObject scalableObject;
 
     [Tooltip("how quickly it grows")]
-    public float speed = 2f;
-    [Tooltip("how long it takes to reach fully grown")]
-    public float duration = 5f;
+    [SerializeField]
+    private float speed = 2f;
 
-    IEnumerator Start()
+    [Tooltip("how long it takes to reach fully grown")]
+    [SerializeField]
+    private float duration = 5f;
+
+    void Update()
+    {
+        StartCoroutine("Detect");
+        TriggerGrowth();
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            repeatable = true;
+        }
+        else
+        {
+            repeatable = false;
+        }
+    }
+
+    IEnumerator Detect()
     {
         //smallest scale is whatever it is set to in world space
         minScale = transform.localScale;
         //if it can grow, it will call other coroutine to begin scale lerp
-        while(repeatable)
+        while (repeatable)
         {
             //lerp scale of model UP
             yield return RepeatLerp(minScale, maxScale, duration);
             //lerp scale down for fluctuation
             yield return RepeatLerp(maxScale, minScale, duration);
-            
+
         }
     }
 
-    void Update()
+    public void TriggerGrowth()
     {
-        Vector3 temp9 = new Vector3();
-        temp9 = foliageSpawn.transform.position;
-        temp9 = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0);
-
-        // .. and increase the foliageGrowth interpolater
-        foliageGrowth += 0.5f * Time.deltaTime;
-
-        // now check if the interpolator has reached maxScale
-        // grow the foliage by calling method
-        if (foliageGrowth > maxScale.y)
+        if(repeatable)
         {
-            isGrowingFoliage = true;
-            if (isGrowingFoliage)
+            Vector3 temp9 = new Vector3();
+            temp9 = foliageSpawn.transform.position;
+            temp9 = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0);
+
+            // .. and increase the foliageGrowth interpolater
+            foliageGrowth += 0.5f * Time.deltaTime;
+
+            // now check if the interpolator has reached maxScale
+            // grow the foliage by calling method
+            if (foliageGrowth > maxScale.y)
             {
-                FoliageSpawnLerp(foliageSpawn, maxScale, duration);
+                isGrowingFoliage = true;
+                if (isGrowingFoliage)
+                {
+                    FoliageSpawnLerp(foliageSpawn, maxScale, duration);
+                }
             }
         }
+        
     }
 
     //takes in two vector 3s - start scale and max scale - and how quickly they lerp as time

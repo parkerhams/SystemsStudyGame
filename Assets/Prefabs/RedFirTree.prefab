@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 3768753817586452846}
   - component: {fileID: 6090671020315973017}
   - component: {fileID: 3408501762097691381}
+  - component: {fileID: 2124233120}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: GrowthTrigger
   m_TagString: Flora
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,6 +93,52 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2124233120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2942124690417213329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f152956c4ded643bc8858da929e0ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxScale: {x: 3, y: 3, z: 3}
+  repeatable: 0
+  isGrowingFoliage: 0
+  foliage:
+  - {fileID: 5370034920755987242}
+  - {fileID: 5370437646428983364}
+  - {fileID: 5368837331591110650}
+  - {fileID: 5369650824479829346}
+  scalableObject: {fileID: 5370066460956707036}
+  speed: 0.2
+  duration: 20
+--- !u!114 &1889197246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5370066460956707036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f152956c4ded643bc8858da929e0ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxScale: {x: 3, y: 3, z: 3}
+  repeatable: 0
+  isGrowingFoliage: 0
+  foliage:
+  - {fileID: 5370034920755987242}
+  - {fileID: 5370437646428983364}
+  - {fileID: 5368837331591110650}
+  - {fileID: 5369650824479829346}
+  scalableObject: {fileID: 5370066460956707036}
+  speed: 0.3
+  duration: 10
 --- !u!1001 &5368944777870153812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -121,15 +168,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4818933448493262, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4818933448493262, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4818933448493262, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4818933448493262, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
       propertyPath: m_LocalRotation.w
@@ -139,19 +186,19 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1228595344148140, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
-      propertyPath: m_TagString
-      value: Flora
+    - target: {fileID: 4818933448493262, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818933448493262, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818933448493262, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1836381829821750, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
-      propertyPath: m_TagString
-      value: Flora
-      objectReference: {fileID: 0}
-    - target: {fileID: 1673738897278992, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
-      propertyPath: m_TagString
-      value: Flora
-      objectReference: {fileID: 0}
-    - target: {fileID: 1232120164457342, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
       propertyPath: m_TagString
       value: Flora
       objectReference: {fileID: 0}
@@ -159,11 +206,53 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Flora
       objectReference: {fileID: 0}
+    - target: {fileID: 1228595344148140, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_TagString
+      value: Flora
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232120164457342, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_TagString
+      value: Flora
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673738897278992, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+      propertyPath: m_TagString
+      value: Flora
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c3007c8da810a24e8f963cdfc2d1088, type: 3}
+--- !u!1 &5370066460956707036 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1156870080549000, guid: 9c3007c8da810a24e8f963cdfc2d1088,
+    type: 3}
+  m_PrefabInstance: {fileID: 5368944777870153812}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5373722477480857754 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4818933448493262, guid: 9c3007c8da810a24e8f963cdfc2d1088,
+    type: 3}
+  m_PrefabInstance: {fileID: 5368944777870153812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5370437646428983364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1673738897278992, guid: 9c3007c8da810a24e8f963cdfc2d1088,
+    type: 3}
+  m_PrefabInstance: {fileID: 5368944777870153812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5370034920755987242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1232120164457342, guid: 9c3007c8da810a24e8f963cdfc2d1088,
+    type: 3}
+  m_PrefabInstance: {fileID: 5368944777870153812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5369650824479829346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1836381829821750, guid: 9c3007c8da810a24e8f963cdfc2d1088,
+    type: 3}
+  m_PrefabInstance: {fileID: 5368944777870153812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5368837331591110650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1024537772394414, guid: 9c3007c8da810a24e8f963cdfc2d1088,
     type: 3}
   m_PrefabInstance: {fileID: 5368944777870153812}
   m_PrefabAsset: {fileID: 0}
