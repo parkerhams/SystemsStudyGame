@@ -42,9 +42,12 @@ public class ScaleLerper : MonoBehaviour
     [SerializeField]
     private float duration = 5f;
 
+    [SerializeField]
+    AudioSource auraAudio;
+
     void Update()
     {
-        StartCoroutine("Detect");
+        
         TriggerGrowth();
     }
 
@@ -53,14 +56,25 @@ public class ScaleLerper : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             repeatable = true;
+
+            StartCoroutine("Detect");
+            TriggerGrowth();
+
+            auraAudio.Play();
         }
         else
         {
             repeatable = false;
+            auraAudio.Stop();
         }
     }
 
-    IEnumerator Detect()
+    public void OnTriggerExit(Collider other)
+    {
+        auraAudio.Stop();
+    }
+
+    public IEnumerator Detect()
     {
         //smallest scale is whatever it is set to in world space
         minScale = transform.localScale;
@@ -80,7 +94,7 @@ public class ScaleLerper : MonoBehaviour
         if(repeatable)
         {
             Vector3 temp9 = new Vector3();
-            temp9 = foliageSpawn.transform.position;
+            temp9 = foliageSpawn;
             temp9 = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0);
 
             // .. and increase the foliageGrowth interpolater
