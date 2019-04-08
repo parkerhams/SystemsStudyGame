@@ -11,12 +11,12 @@ public class ScaleLerper : MonoBehaviour
     [SerializeField]
     Vector3 maxScale;
 
-    [Tooltip("checking scales later to them spawn more foliage around tree")]
+    [Tooltip("checking scales later to then spawn more foliage around tree")]
     Transform foliageSpawn;
 
     [Tooltip("can it also shrink down - Meant for if player has not completely grown the area")]
     [SerializeField]
-    bool repeatable = false;
+    bool repeatable = true;
 
     [SerializeField]
     bool isGrowingFoliage;
@@ -45,18 +45,22 @@ public class ScaleLerper : MonoBehaviour
     [SerializeField]
     AudioSource auraAudio;
 
-    void Update()
+    private void Start()
     {
         
+    }
+
+    void Update()
+    {        
         TriggerGrowth();
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             repeatable = true;
-
+            Debug.Log("Hey Repeatable should be true here");
             StartCoroutine("Detect");
             TriggerGrowth();
 
@@ -93,10 +97,6 @@ public class ScaleLerper : MonoBehaviour
     {
         if(repeatable)
         {
-            Vector3 temp9 = new Vector3();
-            temp9 = foliageSpawn;
-            temp9 = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0);
-
             // .. and increase the foliageGrowth interpolater
             foliageGrowth += 0.5f * Time.deltaTime;
 
@@ -107,7 +107,10 @@ public class ScaleLerper : MonoBehaviour
                 isGrowingFoliage = true;
                 if (isGrowingFoliage)
                 {
-                    FoliageSpawnLerp(foliageSpawn, maxScale, duration);
+                    Vector3 temp9 = new Vector3();
+                    temp9 = foliageSpawn.transform.position;
+                    temp9 = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0);
+                    //FoliageSpawnLerp(foliage, maxScale, duration);
                 }
             }
         }
@@ -127,12 +130,17 @@ public class ScaleLerper : MonoBehaviour
             //this is mine though hehe
             i += Time.deltaTime * rate;
             //changing the world scale of the object to whatever it is on those three conditions
-            transform.localScale = Vector3.Lerp(a, b, i);
+            //transform.localScale = Vector3.Lerp(a, b, i);
 
-            //set it to not repeatable once the cycle is done
-            repeatable = false;
+            foreach(GameObject t in foliage)
+            {
+                t.transform.localScale = Vector3.Lerp(a, b, i);
+            }
+
+            //set it to not repeatable once the cycle is done         
             yield return null;
         }
+        repeatable = false;
     }
 
     public IEnumerator FoliageSpawnLerp(Transform location, Vector3 size, float period)
