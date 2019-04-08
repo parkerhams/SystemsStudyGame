@@ -32,6 +32,9 @@ public class ScaleLerper : MonoBehaviour
     [SerializeField]
     ParticleSystem doneGrowingParticles;
 
+    [Tooltip("How long the doneGrowingParticles should play for")]
+    private float particleDuration = 2f;
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -63,16 +66,14 @@ public class ScaleLerper : MonoBehaviour
     {
         //rate of growth
         float i = 0.0f;
-        float rate = (1.0f / time) * speed;
+        float iterateLerpRate = (1.0f / time) * speed;
 
-        //this while loop was made while following along with Resistance Code! Not my while loop
+        //this while loop was made while following along with Resistance Code tutorial! Not my while loop
         while (i < 1f)
         {
-            //this is mine though hehe
-            i += Time.deltaTime * rate;
-            //changing the world scale of the object to whatever it is on those three conditions
-            //transform.localScale = Vector3.Lerp(a, b, i);
+            i += Time.deltaTime * iterateLerpRate;
 
+            //changing the world scale of the object to whatever it is on those three conditions
             scalableObject.transform.localScale = Vector3.Lerp(a, b, i);
 
             //set it to not repeatable once the cycle is done         
@@ -80,7 +81,7 @@ public class ScaleLerper : MonoBehaviour
         }
 
         doneGrowingParticles.Play();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(particleDuration);
         completedGrowingAudio.Play();
         doneGrowingParticles.Stop();
         auraAudio.Stop();

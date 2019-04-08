@@ -7,21 +7,21 @@ public class FoliageGrowth : MonoBehaviour
     [Tooltip("base size for any trees or foliage that will scale")]
     Vector3 minScale;
 
-    [Tooltip("max scale meant to be controlled in editor - biggest size it can get")]
+    [Tooltip("biggest size it can get")]
     [SerializeField]
     Vector3 maxScale;
 
-    [Tooltip("checking scales later to then spawn more foliage around tree")]
+    [Tooltip("location of spawn areas for more thickness and brush")]
     [SerializeField]
     Transform foliageSpawn;
 
     [Tooltip("how quickly it grows")]
     [SerializeField]
-    private float speed = 2f;
+    private float growthRate = 2f;
 
     [Tooltip("can it also shrink down - Meant for if player has not completely grown the area")]
     [SerializeField]
-    bool repeatable = true;
+    bool canShrink = true;
 
     [SerializeField]
     bool isGrowingFoliage;
@@ -65,7 +65,7 @@ public class FoliageGrowth : MonoBehaviour
     {
         //rate of growth
         float fgrowth = 0.0f;
-        float frate = (1.0f / period) * speed;
+        float frate = (1.0f / period) * growthRate;
 
 
         for (int i = 0; i < foliage.Count; i++)
@@ -84,18 +84,4 @@ public class FoliageGrowth : MonoBehaviour
             }
         }
     }
-
-
-    /*IDEATION TIME
-             * 
-             * Trying to spawn foliage at a certain point in the growth lerp
-             * I.e. once it hits like halfway between those two points, call the function 
-             * that will then instantiate the foliage
-             * 
-             * Then to avoid spawning the same foliage way too many times, have another list that 
-             * as you move through the for loop to spawn, you're adding spawned foliage to the other list
-             * Then compare the list sizes and if the list of spawned foliage is equal to the 
-             * list of amount of foliage created (controlled in the inspector), then stop spawning
-             * Then scale it with the other stuff
-             */
 }
