@@ -48,7 +48,7 @@ public class ScaleLerper : MonoBehaviour
     [SerializeField]
     ParticleSystem doneGrowingParticles;
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
