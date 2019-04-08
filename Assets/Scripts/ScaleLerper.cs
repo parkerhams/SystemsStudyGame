@@ -45,10 +45,8 @@ public class ScaleLerper : MonoBehaviour
     [SerializeField]
     AudioSource auraAudio;
 
-    private void Start()
-    {
-        
-    }
+    [SerializeField]
+    ParticleSystem doneGrowingParticles;
 
     void Update()
     {        
@@ -137,6 +135,8 @@ public class ScaleLerper : MonoBehaviour
             //set it to not repeatable once the cycle is done         
             yield return null;
         }
+
+        doneGrowingParticles.Play();
         repeatable = false;
     }
 
