@@ -132,10 +132,7 @@ public class ScaleLerper : MonoBehaviour
             //changing the world scale of the object to whatever it is on those three conditions
             //transform.localScale = Vector3.Lerp(a, b, i);
 
-            foreach(GameObject t in foliage)
-            {
-                t.transform.localScale = Vector3.Lerp(a, b, i);
-            }
+            scalableObject.transform.localScale = Vector3.Lerp(a, b, i);
 
             //set it to not repeatable once the cycle is done         
             yield return null;
