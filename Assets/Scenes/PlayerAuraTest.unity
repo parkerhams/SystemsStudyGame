@@ -773,7 +773,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295130920}
-  m_LocalRotation: {x: 0.0844837, y: 0.01396245, z: -0.0011839549, w: 0.9963264}
+  m_LocalRotation: {x: 0.084483705, y: 0.0139624495, z: -0.0011839548, w: 0.9963264}
   m_LocalPosition: {x: -67, y: -8, z: 112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1674,7 +1674,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768999456}
-  m_LocalRotation: {x: 0.13259201, y: 0.7822506, z: -0.1782076, w: 0.58201844}
+  m_LocalRotation: {x: 0.13259202, y: 0.7822506, z: -0.17820762, w: 0.58201844}
   m_LocalPosition: {x: -77, y: -4.98271, z: 122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4442,7 +4442,12 @@ PrefabInstance:
     - target: {fileID: 5370066460956707036, guid: 303f99e98b0bf4f4ea357b4da4ff2992,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Flora
+      objectReference: {fileID: 0}
+    - target: {fileID: 5368837331591110650, guid: 303f99e98b0bf4f4ea357b4da4ff2992,
+        type: 3}
+      propertyPath: m_TagString
+      value: Flora
       objectReference: {fileID: 0}
     - target: {fileID: 5373722477480857754, guid: 303f99e98b0bf4f4ea357b4da4ff2992,
         type: 3}
