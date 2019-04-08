@@ -53,7 +53,7 @@ public class ScaleLerper : MonoBehaviour
         TriggerGrowth();
     }
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -81,20 +81,15 @@ public class ScaleLerper : MonoBehaviour
         //smallest scale is whatever it is set to in world space
         minScale = transform.localScale;
         //if it can grow, it will call other coroutine to begin scale lerp
-        while (repeatable)
-        {
             //lerp scale of model UP
             yield return RepeatLerp(minScale, maxScale, duration);
             //lerp scale down for fluctuation
             yield return RepeatLerp(maxScale, minScale, duration);
 
-        }
     }
 
     public void TriggerGrowth()
-    {
-        if(repeatable)
-        {
+    { 
             // .. and increase the foliageGrowth interpolater
             foliageGrowth += 0.5f * Time.deltaTime;
 
@@ -105,13 +100,12 @@ public class ScaleLerper : MonoBehaviour
                 isGrowingFoliage = true;
                 if (isGrowingFoliage)
                 {
-                    Vector3 temp9 = new Vector3();
+                    Vector3 temp9 = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0);
                     temp9 = foliageSpawn.transform.position;
-                    temp9 = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0);
-                    //FoliageSpawnLerp(foliage, maxScale, duration);
+
+                    //FoliageSpawnLerp(foliageSpawn, maxScale, duration);
                 }
             }
-        }
         
     }
 
@@ -137,6 +131,8 @@ public class ScaleLerper : MonoBehaviour
         }
 
         doneGrowingParticles.Play();
+        yield return new WaitForSeconds(3f);
+        doneGrowingParticles.Stop();
         repeatable = false;
     }
 
