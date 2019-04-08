@@ -65,13 +65,13 @@ public class ScaleLerper : MonoBehaviour
     public IEnumerator RepeatLerp(Vector3 a, Vector3 b, float time)
     {
         //rate of growth
-        float i = 0.0f;
+        float scaleRate = 0.0f;
         float iterateLerpRate = (1.0f / time) * speed;
 
         //this while loop was made while following along with Resistance Code tutorial! Not my while loop
-        while (i < 1f)
+        while (scaleRate < 1f)
         {
-            i += Time.deltaTime * iterateLerpRate;
+            scaleRate += Time.deltaTime * iterateLerpRate;
 
             //changing the world scale of the object to whatever it is on those three conditions
             scalableObject.transform.localScale = Vector3.Lerp(a, b, i);
