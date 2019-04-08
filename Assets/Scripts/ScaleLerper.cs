@@ -27,6 +27,9 @@ public class ScaleLerper : MonoBehaviour
     AudioSource auraAudio;
 
     [SerializeField]
+    AudioSource completedGrowingAudio;
+
+    [SerializeField]
     ParticleSystem doneGrowingParticles;
 
     public void OnTriggerEnter(Collider other)
@@ -77,7 +80,8 @@ public class ScaleLerper : MonoBehaviour
         }
 
         doneGrowingParticles.Play();
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+        completedGrowingAudio.Play();
         doneGrowingParticles.Stop();
         auraAudio.Stop();
     }
