@@ -26,18 +26,24 @@ public class PlayerAuraEmit : MonoBehaviour
     [SerializeField]
     float startLerpTime;
 
+    [SerializeField]
+    ParticleSystem auraParticles;
+
     // Start is called before the first frame update
     void Start()
     {
         startLerpTime = Time.time;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.CompareTag("Flora"))
         {
             //if colliding with the Flora area, change mat opacity/color to show activated
             ActivateAuraColorLerp();
+
+            auraParticles.Play();
+
             Debug.Log("player is hitting flora!!!");
         }       
     }
@@ -46,6 +52,7 @@ public class PlayerAuraEmit : MonoBehaviour
     {
         //change mat opacity/color to show deactivated
         DeactivateAuraColorLerp();
+        auraParticles.Stop();
         Debug.Log("player is no longer touching flora area");
     }
 
