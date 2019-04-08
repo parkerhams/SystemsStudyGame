@@ -6,6 +6,7 @@ using UnityEngine;
 /// FoliageGrowth class is meant to add brush and other leaves that grow around the trees while they scale upwards.
 /// This is not yet implemented - but is a polish effect that was abstracted from ScaleLerper script.
 /// The foliage is meant to spawn around the tree as it reaches certain scales to make it appear overgrown.
+/// It does so by taking a list of GameObjects and prefabs and assigning a spawntransform and growthRate to match the scaling trees.
 /// </summary>
 public class FoliageGrowth : MonoBehaviour
 {
