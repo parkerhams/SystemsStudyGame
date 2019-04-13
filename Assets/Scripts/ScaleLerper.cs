@@ -65,7 +65,7 @@ public class ScaleLerper : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        auraAudio.Stop();
+        StartCoroutine(Shrink());
     }
 
     private void Start()
@@ -81,66 +81,24 @@ public class ScaleLerper : MonoBehaviour
             transform.localScale = Vector3.Lerp(transform.localScale, maxScale, growthSpeed * Time.deltaTime);
             yield return null;
         }
-        auraAudio.Stop();
-    }
 
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator Detect()
-    {
-        //lerp scale of model UP
-        yield return null; 
-        //lerp scale down for scaling down if not yet at maxScale
-        //yield return ScaleLerp(maxScale, minScale, duration);
-
-    }
-
-    /// <summary>
-    /// <para>In the Detect coroutine, we return RepeatLerp once the player enters the trigger area.
-    /// When Detect is called, we set the minScale to whatever the growable GameObject's local scale is
-    /// in the world space. We then call the couroutine RepeatLerp, which takes in two vector 3's and a float variable.
-    /// We pass in minScale and maxScale and the duration, all serialized variables at the top, into our ScaleLerp coroutine.
-    /// 
-    /// <para>The ScaleLerp uses two temporary variables - scaleValue, which is 0 and is assigned as our starting point, and 
-    /// increaseRate, which is used to see when we tell the GameObject to stop scaling. Our increaseRate value tells
-    /// the scaleValue value how much to increase by until it gets to 1 over same length of time that it takes our scaleableObject to 
-    /// reach maxScale. In short, while our scaleValue is greater than 0 but less than 1, 
-    /// then we tell the object to scale to our a, b, and time values - 
-    /// which are actually our minScale, maxScale, and durtion values. The increaseRate value is how we increment
-    /// scaleValue to 1 - and when it reaches 1, then we stop scaling. We scale the GameObject in the while loop to by setting the
-    /// scaleableObject's localScale to a Vector 3 lerp and passing in the a(minScale), b(maxScale), and time (duration) values.
-    /// </summary>
-    private IEnumerator ScaleLerp(Vector3 a, Vector3 b, float time)
-    {
-        //scaleValue is a temp value used to say that minScale is seen as a 0 value, and maxScale is a value of 1 
-        //we will scale the scaleableObject upwards while we increase scaleRate from 0 to 1
-        float scaleValue = 0.0f;
-        //increaseRate tells scaleValue to increase to 1 at the same rate that our scaleableObject 
-        //increases from minScale to maxScale. So, scaleRate will scale by a value of increaseRate to 
-        //match the duration and speed the scaleableObject is using to get to maxScale. This is used
-        //so we know we have another condition to tell it to stop scaling.
-        //float increaseRate = (1.0f / time) * speed;
-
-        //this while loop was made while following along with Resistance Code tutorial! Not my while loop
-        while (scaleValue < 1f)
+        if(IsAtMaxScale)
         {
-            //scaleValue += Time.deltaTime * increaseRate;
+            growthCompletedParticles.Play();
+            auraAudio.Stop();
+            yield return new WaitForSeconds(particleDuration);
+            completedGrowingAudio.Play();
+            growthCompletedParticles.Stop();
+        }
+    }
 
-            //changing the world scale of the object to whatever it is on those three conditions
-            //scalableObject.transform.localScale = Vector3.Lerp(a, b, scaleValue);
-
-            //set it to not repeatable once the cycle is done         
+    private IEnumerator Shrink()
+    {
+        auraAudio.Stop();
+        while(!IsAtMaxScale)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, minScale, shrinkSpeed * Time.deltaTime);
             yield return null;
         }
-
-        growthCompletedParticles.Play();
-        yield return new WaitForSeconds(particleDuration);
-        completedGrowingAudio.Play();
-        growthCompletedParticles.Stop();
-        auraAudio.Stop();
     }
-
 }
