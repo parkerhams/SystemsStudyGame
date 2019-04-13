@@ -58,14 +58,18 @@ public class ScaleLerper : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && !IsAtMaxScale)
         {
             // Grow!
-            StartCoroutine(Grow());
-            
+            StartCoroutine(Grow());         
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        StartCoroutine(Shrink());
+        if (other.gameObject.CompareTag("Player") && !IsAtMaxScale)
+        {
+            // Shrink!
+            StartCoroutine(Shrink());
+        }
+
     }
 
     private void Start()
@@ -75,6 +79,7 @@ public class ScaleLerper : MonoBehaviour
 
     private IEnumerator Grow()
     {
+        StopCoroutine(Shrink());
         auraAudio.Play();
         while (!IsAtMaxScale)
         {
@@ -94,6 +99,7 @@ public class ScaleLerper : MonoBehaviour
 
     private IEnumerator Shrink()
     {
+        StopCoroutine(Grow());
         auraAudio.Stop();
         while(!IsAtMaxScale)
         {
