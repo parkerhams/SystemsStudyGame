@@ -10,15 +10,13 @@ using UnityEngine;
 /// </summary>
 public class ScaleLerper : MonoBehaviour
 {
-    
-
     [Tooltip("biggest size it can get")] 
     [SerializeField]
     private Vector3 maxScale;
 
-    //[Tooltip("scalableObject is a reference to the location where the foliage should spawn")]
-    //[SerializeField]
-    //private GameObject scalableObject;
+    [Tooltip("scalableObject is a reference to the location where the foliage should spawn")]
+    [SerializeField]
+    private GameObject scalableObject;
 
     [Tooltip("how quickly it grows")]
     [Range(0,1)]
@@ -29,11 +27,6 @@ public class ScaleLerper : MonoBehaviour
     [Range(0, 1)]
     [SerializeField]
     private float shrinkSpeed = 0.2f;
-
-
-    //[Tooltip("how long it takes to reach fully grown")]
-    //[SerializeField]
-    //private float duration = 5f;
 
     [SerializeField]
     private AudioSource auraAudio;
@@ -83,18 +76,20 @@ public class ScaleLerper : MonoBehaviour
         auraAudio.Play();
         while (!IsAtMaxScale)
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, maxScale, growthSpeed * Time.deltaTime);
+            scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, maxScale, growthSpeed * Time.deltaTime);
+
+            if (transform.localScale == maxScale)
+            {
+                  
+            }
             yield return null;
         }
 
-        if(IsAtMaxScale)
-        {
-            growthCompletedParticles.Play();
-            auraAudio.Stop();
-            yield return new WaitForSeconds(particleDuration);
-            completedGrowingAudio.Play();
-            growthCompletedParticles.Stop();
-        }
+        growthCompletedParticles.Play();
+        auraAudio.Stop();
+        completedGrowingAudio.Play();
+        yield return new WaitForSeconds(particleDuration);
+        growthCompletedParticles.Stop();
     }
 
     private IEnumerator Shrink()
@@ -103,7 +98,7 @@ public class ScaleLerper : MonoBehaviour
         auraAudio.Stop();
         while(!IsAtMaxScale)
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, minScale, shrinkSpeed * Time.deltaTime);
+            scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, minScale, shrinkSpeed * Time.deltaTime);
             yield return null;
         }
     }
