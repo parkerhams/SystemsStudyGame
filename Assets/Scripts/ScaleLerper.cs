@@ -82,13 +82,14 @@ public class ScaleLerper : MonoBehaviour
         {
             scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, maxScale, growthSpeed * Time.deltaTime);
 
-            if((transform.localScale.x >= (maxScale.x - doneGrowingThreshold.x)) &&
-                (transform.localScale.y >= (maxScale.y - doneGrowingThreshold.y)) && (transform.localScale.z >= (maxScale.z - doneGrowingThreshold.z)))
+            Vector3 tempScaleCheck = maxScale - doneGrowingThreshold;
+
+            if(transform.localScale.x >= tempScaleCheck.x && transform.localScale.y >= tempScaleCheck.y && transform.localScale.z >= tempScaleCheck.z)
             {
                 transform.localScale = maxScale;
                 IsAtMaxScale.Equals(true);
                 yield return null;
-            }          
+            }
         }
 
         growthCompletedParticles.Play();
