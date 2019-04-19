@@ -50,10 +50,13 @@ public class PlayerAuraEmit : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //change mat opacity/color to show deactivated
-        DeactivateAuraColorLerp();
-        auraParticles.Stop();
-        Debug.Log("player is no longer touching flora area");
+        if (other.gameObject.CompareTag("Flora"))
+        {
+            //change mat opacity/color to show deactivated
+            DeactivateAuraColorLerp();
+            auraParticles.Stop();
+            Debug.Log("player is no longer touching flora area");
+        }
     }
 
     void ActivateAuraColorLerp()

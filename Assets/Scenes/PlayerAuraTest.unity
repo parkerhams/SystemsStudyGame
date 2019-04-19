@@ -849,13 +849,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f152956c4ded643bc8858da929e0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScale: {x: 5, y: 5, z: 5}
+  maxScale: 0
   scalableObject: {fileID: 0}
   growthSpeed: 0.4
   shrinkSpeed: 0.2
   doneGrowingThreshold: 0
-  auraAudio: {fileID: 317688374}
-  completedGrowingAudio: {fileID: 317688375}
+  auraAudioClip: {fileID: 0}
+  completedGrowingAudioClip: {fileID: 0}
   growthCompletedParticles: {fileID: 0}
 --- !u!135 &317688370
 SphereCollider:
@@ -1205,7 +1205,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539891925}
-  m_LocalRotation: {x: -0.008790269, y: -0.00000003443558, z: -3.027097e-10, w: 0.9999614}
+  m_LocalRotation: {x: -0.00879027, y: 0.00000003430013, z: 3.0151906e-10, w: 0.9999614}
   m_LocalPosition: {x: -67, y: -8.82, z: 111.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1255,7 +1255,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1190
+  m_Name: pb_Mesh-1216
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -1570,7 +1570,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768999456}
-  m_LocalRotation: {x: 0.13259202, y: 0.7822506, z: -0.17820762, w: 0.58201844}
+  m_LocalRotation: {x: 0.13259201, y: 0.7822506, z: -0.1782076, w: 0.58201844}
   m_LocalPosition: {x: -77, y: -4.98271, z: 122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1769,7 +1769,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh13932
+  m_Name: pb_Mesh14150
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -2147,10 +2147,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.1921864
-  m_Height: 2.3843727
+  m_Radius: 2.763708
+  m_Height: 5.527416
   m_Direction: 1
-  m_Center: {x: 0.69218636, y: 0.5, z: 0}
+  m_Center: {x: 0.3745861, y: 0.4998436, z: 0}
 --- !u!82 &1238995881
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2273,13 +2273,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f152956c4ded643bc8858da929e0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScale: {x: 5, y: 5, z: 5}
+  maxScale: 5
   scalableObject: {fileID: 1238995879}
-  growthSpeed: 0.128
+  growthSpeed: 0.055
   shrinkSpeed: 0.045
-  doneGrowingThreshold: 0
-  auraAudio: {fileID: 1238995881}
-  completedGrowingAudio: {fileID: 1238995888}
+  doneGrowingThreshold: 0.001
+  auraAudioClip: {fileID: 8300000, guid: 6945ed38e6d4ca54bb16e7606a68ddfd, type: 3}
+  completedGrowingAudioClip: {fileID: 8300000, guid: 533d09b2e94e0c54caf6f875f34858d8,
+    type: 3}
   growthCompletedParticles: {fileID: 750079900}
 --- !u!114 &1238995884
 MonoBehaviour:
@@ -3148,7 +3149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7329f5f5f03a14d4aa88fd6f00ece5d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeTime: 5
+  fadeTime: 66
   maxVolume: 1
 --- !u!43 &1292167131
 Mesh:
@@ -3156,7 +3157,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh13970
+  m_Name: pb_Mesh14188
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -4644,7 +4645,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh13776
+  m_Name: pb_Mesh13992
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -5439,7 +5440,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh13946
+  m_Name: pb_Mesh14164
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -5640,7 +5641,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh13918
+  m_Name: pb_Mesh14136
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -5884,22 +5885,22 @@ PrefabInstance:
     - target: {fileID: 7207270980676506532, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.09272887
+      value: -0.092728876
       objectReference: {fileID: 0}
     - target: {fileID: 7207270980676506532, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.01699157
+      value: -0.016991537
       objectReference: {fileID: 0}
     - target: {fileID: 7207270980676506532, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.031985365
+      value: -0.03198537
       objectReference: {fileID: 0}
     - target: {fileID: 7207270980676506532, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9950325
+      value: 0.99503255
       objectReference: {fileID: 0}
     - target: {fileID: 8636953332645921488, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}

@@ -8,11 +8,13 @@ using UnityEngine;
 /// while the player's game object is in the trigger area of the tree.
 /// Audio will play while the game object scales upwards, and it will play particle effects to show it's reached maxScale.
 /// </summary>
+[RequireComponent(typeof(AudioSource))]
 public class ScaleLerper : MonoBehaviour
 {
+    #region SerializedFields
     [Tooltip("biggest size it can get")] 
     [SerializeField]
-    private Vector3 maxScale;
+    private float maxScale;
 
     [Tooltip("scalableObject is a reference to the location where the foliage should spawn")]
     [SerializeField]
@@ -30,25 +32,40 @@ public class ScaleLerper : MonoBehaviour
 
     [Tooltip("tell object to be set to maxScale if localScale is within this threshold")]
     [SerializeField]
-    private Vector3 doneGrowingThreshold;
+    private float doneGrowingThreshold;
 
     [SerializeField]
-    private AudioSource auraAudio;
+    private AudioClip auraAudioClip;
 
     [SerializeField]
-    private AudioSource completedGrowingAudio;
+    private AudioClip completedGrowingAudioClip;
 
     [SerializeField]
     private ParticleSystem growthCompletedParticles;
+    #endregion
 
     private float particleDuration = 2f;
+    private AudioSource audioSource;
 
-    private bool IsAtMaxScale => transform.localScale == maxScale;
+    private bool IsAtMaxScale => transform.localScale == maxScale * Vector3.one;
 
     /// <summary>
     /// The smallest scale the object should be, as defined by it's starting scale set in the editor.
     /// </summary>
     private Vector3 minScale;
+
+    private void PlayNewAudioClip(AudioClip clip)
+    {
+        audioSource.Stop();
+        if (clip == auraAudioClip)
+            audioSource.loop = true;
+        else
+            audioSource.loop = false;
+
+        audioSource.clip = clip;
+
+        audioSource.Play();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -64,37 +81,36 @@ public class ScaleLerper : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && !IsAtMaxScale)
         {
             // Shrink!
-            StartCoroutine(Shrink());
+            //StartCoroutine(Shrink());
         }
 
     }
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         minScale = transform.localScale;
     }
 
     private IEnumerator Grow()
     {
-        StopCoroutine(Shrink());
-        auraAudio.Play();
+        //StopCoroutine(Shrink());
+        PlayNewAudioClip(auraAudioClip);
         while (!IsAtMaxScale)
         {
-            scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, maxScale, growthSpeed * Time.deltaTime);
+            scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, maxScale * Vector3.one, growthSpeed * Time.deltaTime);
+            float distanceFromMax = maxScale - transform.localScale.magnitude;
+            bool isCloseEnough = distanceFromMax <= doneGrowingThreshold;
 
-            Vector3 tempGrowthCheck = maxScale - doneGrowingThreshold;
-
-            if(transform.localScale.x>= tempGrowthCheck.x&& transform.localScale.y >= tempGrowthCheck.y && transform.localScale.z >= tempGrowthCheck.z)
+            if (isCloseEnough)
             {
-                transform.localScale = maxScale;
-                IsAtMaxScale.Equals(true);               
+                transform.localScale = maxScale * Vector3.one;              
             }
             yield return null;
         }
 
         growthCompletedParticles.Play();
-        auraAudio.Stop();
-        completedGrowingAudio.Play();
+        PlayNewAudioClip(completedGrowingAudioClip);
         yield return new WaitForSeconds(particleDuration);
         growthCompletedParticles.Stop();
     }
@@ -102,11 +118,11 @@ public class ScaleLerper : MonoBehaviour
     private IEnumerator Shrink()
     {
         StopCoroutine(Grow());
-        auraAudio.Stop();
+        audioSource.Stop();
         while(!IsAtMaxScale)
         {
             scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, minScale, shrinkSpeed * Time.deltaTime);
-            yield return null;
+            yield return minScale;
         }
     }
 }
