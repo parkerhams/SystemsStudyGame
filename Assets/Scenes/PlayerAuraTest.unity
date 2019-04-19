@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028359, g: 0.22571385, b: 0.30692258, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -738,7 +738,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295130920}
-  m_LocalRotation: {x: 0.084484205, y: 0.013533975, z: -0.0011476522, w: 0.9963322}
+  m_LocalRotation: {x: 0.08448577, y: 0.012105705, z: -0.0010265418, w: 0.99635065}
   m_LocalPosition: {x: -67, y: -8, z: 112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -853,7 +853,7 @@ MonoBehaviour:
   scalableObject: {fileID: 0}
   growthSpeed: 0.4
   shrinkSpeed: 0.2
-  doneGrowingThreshold: {x: 0, y: 0, z: 0}
+  doneGrowingThreshold: 0
   auraAudio: {fileID: 317688374}
   completedGrowingAudio: {fileID: 317688375}
   growthCompletedParticles: {fileID: 0}
@@ -1206,7 +1206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539891925}
   m_LocalRotation: {x: -0.008790269, y: -0.00000003443558, z: -3.027097e-10, w: 0.9999614}
-  m_LocalPosition: {x: -67, y: -8.82, z: 111.48}
+  m_LocalPosition: {x: -65.96903, y: -8.369929, z: 112.472244}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2124,6 +2124,7 @@ GameObject:
   - component: {fileID: 1238995886}
   - component: {fileID: 1238995885}
   - component: {fileID: 1238995884}
+  - component: {fileID: 1238995889}
   - component: {fileID: 1238995883}
   - component: {fileID: 1238995882}
   - component: {fileID: 1238995881}
@@ -2276,7 +2277,7 @@ MonoBehaviour:
   scalableObject: {fileID: 1238995879}
   growthSpeed: 0.128
   shrinkSpeed: 0.045
-  doneGrowingThreshold: {x: 4.8, y: 4.8, z: 4.8}
+  doneGrowingThreshold: 0
   auraAudio: {fileID: 1238995881}
   completedGrowingAudio: {fileID: 1238995888}
   growthCompletedParticles: {fileID: 750079900}
@@ -3135,6 +3136,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1238995889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238995879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7329f5f5f03a14d4aa88fd6f00ece5d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeTime: 49
+  maxVolume: 1
 --- !u!43 &1292167131
 Mesh:
   m_ObjectHideFlags: 0
@@ -3307,7 +3322,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh13892
+  m_Name: pb_Mesh14108
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
