@@ -30,7 +30,7 @@ public class ScaleLerper : MonoBehaviour
 
     [Tooltip("tell object to be set to maxScale if localScale is within this threshold")]
     [SerializeField]
-    private float doneGrowingThreshold;
+    private Vector3 doneGrowingThreshold;
 
     [SerializeField]
     private AudioSource auraAudio;
@@ -80,15 +80,16 @@ public class ScaleLerper : MonoBehaviour
         auraAudio.Play();
         while (!IsAtMaxScale)
         {
-            scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, maxScale, growthSpeed * Time.deltaTime - doneGrowingThreshold);
+            scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, maxScale, growthSpeed * Time.deltaTime);
 
-            //Vector3 tempScaleCheck = maxScale - doneGrowingThreshold;
+            Vector3 tempGrowthCheck = maxScale - doneGrowingThreshold;
 
-            if(transform.localScale == maxScale)
-            {              
-                IsAtMaxScale.Equals(true);
-                yield return null;
+            if(transform.localScale.x>= tempGrowthCheck.x&& transform.localScale.y >= tempGrowthCheck.y && transform.localScale.z >= tempGrowthCheck.z)
+            {
+                transform.localScale = maxScale;
+                IsAtMaxScale.Equals(true);               
             }
+            yield return null;
         }
 
         growthCompletedParticles.Play();
