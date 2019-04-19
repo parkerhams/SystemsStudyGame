@@ -84,10 +84,10 @@ public class ScaleLerper : MonoBehaviour
 
             Vector3 tempScaleCheck = maxScale - doneGrowingThreshold;
 
-            if(transform.localScale.x >= tempScaleCheck.x && transform.localScale.y >= tempScaleCheck.y && transform.localScale.z >= tempScaleCheck.z)
+            if((transform.localScale.x >= maxScale.x) && (transform.localScale.y > maxScale.y) && (transform.localScale.z > maxScale.z))
             {
                 transform.localScale = maxScale;
-                IsAtMaxScale.Equals(true);
+                //IsAtMaxScale.Equals(true);
                 yield return null;
             }
         }
