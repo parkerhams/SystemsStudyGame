@@ -994,7 +994,7 @@ MonoBehaviour:
   maxScale: 0
   scalableObject: {fileID: 0}
   growthSpeed: 0.4
-  shrinkSpeed: 0.2
+  shrinkSpeed: 0.5
   doneGrowingThreshold: 0
   auraAudioClip: {fileID: 0}
   completedGrowingAudioClip: {fileID: 0}
@@ -1347,7 +1347,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539891925}
-  m_LocalRotation: {x: -0.00879027, y: 0.00000003430013, z: 3.0151906e-10, w: 0.9999614}
+  m_LocalRotation: {x: -0.008790269, y: -0.00000003443558, z: -3.027097e-10, w: 0.9999614}
   m_LocalPosition: {x: -67, y: -8.82, z: 111.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1712,7 +1712,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768999456}
-  m_LocalRotation: {x: 0.13259201, y: 0.7822506, z: -0.1782076, w: 0.58201844}
+  m_LocalRotation: {x: 0.13259202, y: 0.7822506, z: -0.17820762, w: 0.58201844}
   m_LocalPosition: {x: -77, y: -4.98271, z: 122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2417,8 +2417,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: 5
   scalableObject: {fileID: 1238995879}
-  growthSpeed: 0.055
-  shrinkSpeed: 0.045
+  growthSpeed: 0.4
+  shrinkSpeed: 0.5
   doneGrowingThreshold: 0.001
   auraAudioClip: {fileID: 8300000, guid: 6945ed38e6d4ca54bb16e7606a68ddfd, type: 3}
   completedGrowingAudioClip: {fileID: 8300000, guid: 533d09b2e94e0c54caf6f875f34858d8,
@@ -3122,7 +3122,7 @@ MonoBehaviour:
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
-  m_SelectedVertices: 21000000
+  m_SelectedVertices: 
 --- !u!23 &1238995885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6027,22 +6027,22 @@ PrefabInstance:
     - target: {fileID: 7207270980676506532, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.092728876
+      value: -0.09272887
       objectReference: {fileID: 0}
     - target: {fileID: 7207270980676506532, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.016991537
+      value: -0.01699157
       objectReference: {fileID: 0}
     - target: {fileID: 7207270980676506532, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.03198537
+      value: -0.031985365
       objectReference: {fileID: 0}
     - target: {fileID: 7207270980676506532, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99503255
+      value: 0.9950325
       objectReference: {fileID: 0}
     - target: {fileID: 8636953332645921488, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
