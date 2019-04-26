@@ -28,7 +28,7 @@ public class ScaleLerper : MonoBehaviour
     [Tooltip("how quickly it shrinks")]
     [Range(0, 1)]
     [SerializeField]
-    private float shrinkSpeed = 0.2f;
+    private float shrinkSpeed = 0.5f;
 
     [Tooltip("tell object to be set to maxScale if localScale is within this threshold")]
     [SerializeField]
@@ -49,10 +49,12 @@ public class ScaleLerper : MonoBehaviour
 
     private bool IsAtMaxScale => transform.localScale == maxScale * Vector3.one;
 
+    private bool IsAtMinScale => transform.localScale == minScale * Vector3.one;
+
     /// <summary>
     /// The smallest scale the object should be, as defined by it's starting scale set in the editor.
     /// </summary>
-    private Vector3 minScale;
+    private float minScale;
 
     private void PlayNewAudioClip(AudioClip clip)
     {
@@ -65,6 +67,16 @@ public class ScaleLerper : MonoBehaviour
         audioSource.clip = clip;
 
         audioSource.Play();
+    }
+
+    private void StopAudioClips(AudioClip clip)
+    {
+        audioSource.Stop();
+
+        audioSource.clip = clip;
+
+        audioSource.Stop();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,7 +93,7 @@ public class ScaleLerper : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && !IsAtMaxScale)
         {
             // Shrink!
-            //StartCoroutine(Shrink());
+            StartCoroutine(Shrink());
         }
 
     }
@@ -89,12 +101,12 @@ public class ScaleLerper : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        minScale = transform.localScale;
+        minScale = transform.localScale.magnitude;
     }
 
     private IEnumerator Grow()
     {
-        //StopCoroutine(Shrink());
+        StopCoroutine(Shrink());
         PlayNewAudioClip(auraAudioClip);
         while (!IsAtMaxScale)
         {
@@ -104,7 +116,7 @@ public class ScaleLerper : MonoBehaviour
 
             if (isCloseEnough)
             {
-                transform.localScale = maxScale * Vector3.one;              
+                transform.localScale = maxScale * Vector3.one;               
             }
             yield return null;
         }
@@ -118,11 +130,12 @@ public class ScaleLerper : MonoBehaviour
     private IEnumerator Shrink()
     {
         StopCoroutine(Grow());
-        audioSource.Stop();
+        StopAudioClips(auraAudioClip);
         while(!IsAtMaxScale)
         {
-            scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, minScale, shrinkSpeed * Time.deltaTime);
-            yield return minScale;
+            scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, minScale * Vector3.one, shrinkSpeed / growthSpeed);
+            shrinkSpeed += Time.deltaTime;
+            yield return null;
         }
     }
 }
