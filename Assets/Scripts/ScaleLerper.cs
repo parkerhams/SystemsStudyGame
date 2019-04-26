@@ -51,6 +51,12 @@ public class ScaleLerper : MonoBehaviour
 
     private bool IsAtMinScale => transform.localScale == minScale * Vector3.one;
 
+    private bool isShrinking, isGrowing;
+
+    private const string shrinkCoroutine = nameof(Grow);
+    private const string growCoroutine = nameof(Shrink);
+
+
     /// <summary>
     /// The smallest scale the object should be, as defined by it's starting scale set in the editor.
     /// </summary>
@@ -81,21 +87,31 @@ public class ScaleLerper : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Player has ENTERED!");
         if (other.gameObject.CompareTag("Player") && !IsAtMaxScale)
         {
             // Grow!
-            StartCoroutine(Grow());         
+            StopAllCoroutines();
+            isShrinking = false;
+            if (!isGrowing)
+                StartCoroutine(growCoroutine);         
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && !IsAtMaxScale)
+        Debug.Log("Player has EXITED!");
+        if (!IsAtMaxScale)
         {
-            // Shrink!
-            StartCoroutine(Shrink());
+            if (other.gameObject.CompareTag("Player") && !IsAtMinScale)
+            {
+                // Shrink!
+                StopAllCoroutines();
+                isGrowing = false;
+                if (!isShrinking)
+                    StartCoroutine(shrinkCoroutine);
+            }
         }
-
     }
 
     private void Start()
@@ -106,12 +122,12 @@ public class ScaleLerper : MonoBehaviour
 
     private IEnumerator Grow()
     {
-        StopCoroutine(Shrink());
+        isGrowing = true;
         PlayNewAudioClip(auraAudioClip);
         while (!IsAtMaxScale)
         {
             scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, maxScale * Vector3.one, growthSpeed * Time.deltaTime);
-            float distanceFromMax = maxScale - transform.localScale.magnitude;
+            float distanceFromMax = Mathf.Abs(maxScale - transform.localScale.magnitude);
             bool isCloseEnough = distanceFromMax <= doneGrowingThreshold;
 
             if (isCloseEnough)
@@ -121,6 +137,8 @@ public class ScaleLerper : MonoBehaviour
             yield return null;
         }
 
+        isGrowing = false;
+
         growthCompletedParticles.Play();
         PlayNewAudioClip(completedGrowingAudioClip);
         yield return new WaitForSeconds(particleDuration);
@@ -129,13 +147,22 @@ public class ScaleLerper : MonoBehaviour
 
     private IEnumerator Shrink()
     {
-        StopCoroutine(Grow());
+        isShrinking = true;
         StopAudioClips(auraAudioClip);
-        while(!IsAtMaxScale)
+        while(!IsAtMinScale)
         {
-            scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, minScale * Vector3.one, shrinkSpeed / growthSpeed);
-            shrinkSpeed += Time.deltaTime;
+            scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, minScale * Vector3.one, shrinkSpeed * Time.deltaTime);
+
+            float distanceFromMin = Mathf.Abs(minScale - transform.localScale.magnitude);
+            bool isCloseEnough = distanceFromMin <= doneGrowingThreshold;
+
+            if (isCloseEnough)
+            {
+                transform.localScale = minScale * Vector3.one;
+            }
             yield return null;
         }
+
+        isShrinking = false;
     }
 }

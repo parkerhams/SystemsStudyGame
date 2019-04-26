@@ -2417,8 +2417,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: 5
   scalableObject: {fileID: 1238995879}
-  growthSpeed: 0.4
-  shrinkSpeed: 0.5
+  growthSpeed: 0.59
+  shrinkSpeed: 0.05
   doneGrowingThreshold: 0.001
   auraAudioClip: {fileID: 8300000, guid: 6945ed38e6d4ca54bb16e7606a68ddfd, type: 3}
   completedGrowingAudioClip: {fileID: 8300000, guid: 533d09b2e94e0c54caf6f875f34858d8,
@@ -6007,22 +6007,22 @@ PrefabInstance:
     - target: {fileID: 7207270979660474665, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.034947578
+      value: 0.03494757
       objectReference: {fileID: 0}
     - target: {fileID: 7207270979660474665, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.014993754
+      value: 0.014993761
       objectReference: {fileID: 0}
     - target: {fileID: 7207270979660474665, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.031460885
+      value: 0.03146089
       objectReference: {fileID: 0}
     - target: {fileID: 7207270979660474665, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.99878126
+      value: -0.9987813
       objectReference: {fileID: 0}
     - target: {fileID: 7207270980676506532, guid: 00b6495dba6d4044e94fff15ca327d4f,
         type: 3}
