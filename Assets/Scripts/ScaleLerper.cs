@@ -2,136 +2,208 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <para> Scales objects up to a max scale if player enters trigger.
+/// If player leaves trigger before reaching max scale, the object begins scaling back down to it's minimum / starting scale.
+/// while the player's game object is in the trigger area of the tree.
+/// Audio will play while the game object scales upwards, and it will play particle effects to show it's reached maxScale.
+/// </summary>
+[RequireComponent(typeof(AudioSource))]
 public class ScaleLerper : MonoBehaviour
 {
-    //base size for any trees or foliage that will scale
-    Vector3 minScale;
+    #region SerializedFields
+    [Tooltip("biggest size it can get")] 
+    [SerializeField]
+    private float maxScale;
 
-    //max scale meant to be controlled in editor - biggest size it can get 
+    [Tooltip("scalableObject is a reference to the location where the foliage should spawn")]
     [SerializeField]
-    Vector3 maxScale;
-    //checking scales later to them spawn more foliage around tree
-    Transform foliageSpawn;
-    //can it also shrink down? Meant for if player has not completely grown the area
-    [SerializeField]
-    bool repeatable;
-    [SerializeField]
-    bool isGrowingFoliage;
-    [SerializeField]
-    static float foliageGrowth = 0.0f;
-    
-    //foliage to add more details like grass or flowers around these larger scaled objects
-    [SerializeField]
-    List<GameObject> foliage = new List<GameObject>();
-    List<GameObject> spawnedFoliage = new List<GameObject>();
-    //scalableObject is a reference to the location where the foliage should spawn
-    [SerializeField]
-    GameObject scalableObject;
+    private GameObject scalableObject;
 
-    //how quickly it grows
-    public float speed = 2f;
-    //how long to process of growing takes place
-    public float duration = 5f;
+    [Tooltip("how quickly it grows")]
+    //[Range(0,1)]
+    [SerializeField]
+    private float growthSpeed = 0.4f;
 
-    
+    [Tooltip("how quickly it shrinks")]
+    //[Range(0, 1)]
+    [SerializeField]
+    private float shrinkSpeed = 0.5f;
 
-    // Start is called before the first frame update
-    IEnumerator Start()
+    [Tooltip("tell object to be set to maxScale if localScale is within this threshold")]
+    [SerializeField]
+    private float doneGrowingThreshold;
+
+    [SerializeField]
+    private AudioClip auraAudioClip;
+
+    [SerializeField]
+    private AudioClip completedGrowingAudioClip;
+
+    [SerializeField]
+    private ParticleSystem growthCompletedParticles;
+    #endregion
+
+    private float particleDuration = 2f;
+    private AudioSource audioSource;
+
+    private bool IsAtMaxScale => transform.localScale == maxScale * Vector3.one;
+
+    private bool IsAtMinScale => transform.localScale == minScale * Vector3.one;
+
+    private bool isShrinking, isGrowing;
+
+    private const string shrinkCoroutine = nameof(Grow);
+    private const string growCoroutine = nameof(Shrink);
+
+
+    /// <summary>
+    /// The smallest scale the object should be, as defined by it's starting scale set in the editor.
+    /// </summary>
+    private float minScale;
+
+    private void PlayNewAudioClip(AudioClip clip)
     {
-        //scalableObject = transform.localPosition;
+        audioSource.Stop();
+        if (clip == auraAudioClip)
+            audioSource.loop = true;
+        else
+            audioSource.loop = false;
 
-        //smallest scale is whatever it is set to in world space
-        minScale = transform.localScale;
-        //if it can grow, it will call other coroutine to begin scale lerp
-        while(repeatable)
+        audioSource.clip = clip;
+
+        audioSource.Play();
+    }
+
+    private void StopAudioClips(AudioClip clip)
+    {
+        audioSource.Stop();
+
+        audioSource.clip = clip;
+
+        audioSource.Stop();
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Player has ENTERED!");
+        if (other.gameObject.CompareTag("Player") && !IsAtMaxScale)
         {
-            //lerp scale of model UP
-            yield return RepeatLerp(minScale, maxScale, duration);
-            //lerp scale down for fluctuation?
-            yield return RepeatLerp(maxScale, minScale, duration);
-            
+            // Grow!
+            //StopAllCoroutines();
+            isShrinking = false;
+            isGrowing = true;
+            //if (!isGrowing)
+            //    StartCoroutine(growCoroutine);
         }
     }
 
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
-        //foliageSpawn = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0, 0);
-        Vector3 temp9 = new Vector3();
-        temp9 = foliageSpawn.transform.position;
-        temp9 = new Vector3(Mathf.Lerp(minScale.y, maxScale.y, foliageGrowth), 0);
+        Debug.Log("Player has EXITED!");
+           if (other.gameObject.CompareTag("Player") && !IsAtMinScale)
+           {
+            // Shrink!
+            //StopAllCoroutines();
+                isGrowing = false;
+                isShrinking = true;
+                //if (!isShrinking)
+                //    StartCoroutine(shrinkCoroutine);
+           }
+    }
 
-        // .. and increase the foliageGrowth interpolater
-        foliageGrowth += 0.5f * Time.deltaTime;
-
-        // now check if the interpolator has reached maxScale
-        // grow the foliage by calling method
-        if (foliageGrowth > maxScale.y)
+    private void FixedUpdate()
+    {
+        if (!IsAtMaxScale)
         {
-            isGrowingFoliage = true;
-            if (isGrowingFoliage)
+            if (isGrowing)
             {
-                FoliageSpawnLerp(foliageSpawn, maxScale, duration);
-            }
-        }
-    }
+                //PlayNewAudioClip(auraAudioClip);
+                transform.localScale =
+                    Vector3.MoveTowards(transform.localScale, Vector3.one * maxScale, growthSpeed * Time.deltaTime);
 
-    //takes in two vector 3s - start scale and max scale - and how quickly they lerp as time
-    public IEnumerator RepeatLerp(Vector3 a, Vector3 b, float time)
-    {
-        //rate of growth
-        float i = 0.0f;
-        float rate = (1.0f / time) * speed;
+                float distanceFromMax = Mathf.Abs(maxScale - transform.localScale.x);
+                bool isCloseEnough = distanceFromMax <= doneGrowingThreshold;
 
-        //this while loop was made while following along with Resistance Code! Not my while loop
-        while(i < 1f)
-        {
-            //this is mine though hehe
-            //yeet
-            i += Time.deltaTime * rate;
-            //changing the world scale of the object to whatever it is on those three conditions
-            transform.localScale = Vector3.Lerp(a, b, i);
-
-            //set it to not repeatable once the cycle is done
-            repeatable = false;
-            yield return null;
-        }
-    }
-
-    /*IDEATION TIME
-             * 
-             * Trying to spawn foliage at a certain point in the growth lerp
-             * I.e. once it hits like halfway between those two points, call the function 
-             * that will then instantiate the foliage
-             * 
-             * Then to avoid spawning the same foliage way too many times, have another list that 
-             * as you move through the for loop to spawn, you're adding spawned foliage to the other list
-             * Then compare the list sizes and if the list of spawned foliage is equal to the 
-             * list of amount of foliage created (controlled in the inspector), then stop spawning
-             * Then scale it with the other stuff
-             */
-    public IEnumerator FoliageSpawnLerp(Transform location, Vector3 size, float period)
-    {
-        //rate of growth
-        float fgrowth = 0.0f;
-        float frate = (1.0f / period) * speed;
-        
-
-        for(int i = 0; i < foliage.Count; i++)
-        {
-            var foliageInstance = Instantiate(foliage[i], location);
-            spawnedFoliage.Add(foliageInstance);
-
-            if(spawnedFoliage.Count >= foliage.Count)
-            {
-                while(fgrowth < 1f)
+                if (isCloseEnough)
                 {
-                    fgrowth += Time.deltaTime * frate;
-                    transform.localScale = Vector3.Lerp(location.position, size, period);
-                    yield return null;
+                    transform.localScale = maxScale * Vector3.one;
+                    isGrowing = false;
+                    growthCompletedParticles.Play();
+                    PlayNewAudioClip(completedGrowingAudioClip);
                 }
             }
+
+            else if (!isGrowing)
+            {
+                Debug.Log("isGrowing is false");
+                transform.localScale =
+                    Vector3.MoveTowards(transform.localScale, Vector3.one * minScale, shrinkSpeed * Time.deltaTime);
+
+                float distanceFromMax = Mathf.Abs(maxScale - transform.localScale.x);
+                bool isCloseEnough = distanceFromMax <= doneGrowingThreshold;
+
+                if (isCloseEnough)
+                {
+                    transform.localScale = minScale * Vector3.one;
+                    isShrinking = false;
+                }
+            }
+
         }
     }
 
-    
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        minScale = transform.localScale.magnitude;
+    }
+
+    private IEnumerator Grow()
+    {
+        isGrowing = true;
+        PlayNewAudioClip(auraAudioClip);
+        while (!IsAtMaxScale)
+        {
+             scalableObject.transform.localScale = Vector3.MoveTowards(transform.localScale, Vector3.one * maxScale, growthSpeed * Time.deltaTime);
+            //scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, maxScale * Vector3.one, growthSpeed * Time.deltaTime);
+            float distanceFromMax = Mathf.Abs(maxScale - transform.localScale.x);
+            bool isCloseEnough = distanceFromMax <= doneGrowingThreshold;
+
+            if (isCloseEnough)
+            {
+                transform.localScale = maxScale * Vector3.one;               
+            }
+            yield return null;
+        }
+
+        isGrowing = false;
+
+        growthCompletedParticles.Play();
+        PlayNewAudioClip(completedGrowingAudioClip);
+        yield return new WaitForSeconds(particleDuration);
+        growthCompletedParticles.Stop();
+    }
+
+    private IEnumerator Shrink()
+    {
+        isShrinking = true;
+        StopAudioClips(auraAudioClip);
+        while(!IsAtMinScale)
+        {
+            scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, minScale * Vector3.one, shrinkSpeed * Time.deltaTime);
+
+            float distanceFromMin = Mathf.Abs(minScale - transform.localScale.magnitude);
+            bool isCloseEnough = distanceFromMin <= doneGrowingThreshold;
+
+            if (isCloseEnough)
+            {
+                transform.localScale = minScale * Vector3.one;
+            }
+            yield return null;
+        }
+
+        isShrinking = false;
+    }
 }
