@@ -54,7 +54,7 @@ public class PlayerAuraEmit : MonoBehaviour
         {
             //change mat opacity/color to show deactivated
             DeactivateAuraColorLerp();
-            auraParticles.Stop();
+            auraParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             Debug.Log("player is no longer touching flora area");
         }
     }
