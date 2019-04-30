@@ -679,7 +679,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539891925}
   m_LocalRotation: {x: -0.008790269, y: -0.000000035032503, z: -3.07957e-10, w: 0.9999614}
-  m_LocalPosition: {x: -65.96903, y: -8.369929, z: 112.472244}
+  m_LocalPosition: {x: -67, y: -8.82, z: 111.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1212,7 +1212,7 @@ MonoBehaviour:
   maxScale: 5
   scalableObject: {fileID: 1238995879}
   growthSpeed: 0.5
-  shrinkSpeed: 0.4
+  shrinkSpeed: 0.2
   doneGrowingThreshold: 0.001
   auraAudioClip: {fileID: 8300000, guid: 6945ed38e6d4ca54bb16e7606a68ddfd, type: 3}
   completedGrowingAudioClip: {fileID: 8300000, guid: 533d09b2e94e0c54caf6f875f34858d8,
