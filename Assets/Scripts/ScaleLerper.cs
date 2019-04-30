@@ -102,15 +102,15 @@ public class ScaleLerper : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Debug.Log("Player has EXITED!");
-            if (other.gameObject.CompareTag("Player") && !IsAtMinScale)
-            {
-                // Shrink!
-                //StopAllCoroutines();
+           //if (other.gameObject.CompareTag("Player") && !IsAtMaxScale)
+            //{
+            // Shrink!
+            //StopAllCoroutines();
                 isGrowing = false;
                 isShrinking = true;
                 //if (!isShrinking)
                 //    StartCoroutine(shrinkCoroutine);
-            }
+            //}
     }
 
     private void FixedUpdate()
@@ -135,13 +135,10 @@ public class ScaleLerper : MonoBehaviour
                 }
             }
 
-        }
-
-        else if(!IsAtMinScale)
-        {
-            if(!isGrowing)
+            else if (!isGrowing)
             {
-                transform.localScale = 
+                Debug.Log("isGrowing is false");
+                transform.localScale =
                     Vector3.MoveTowards(transform.localScale, Vector3.one * minScale, shrinkSpeed * Time.deltaTime);
 
                 float distanceFromMin = Mathf.Abs(minScale - transform.localScale.magnitude);
@@ -153,6 +150,7 @@ public class ScaleLerper : MonoBehaviour
                     isShrinking = false;
                 }
             }
+
         }
     }
 
