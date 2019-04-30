@@ -141,14 +141,14 @@ public class ScaleLerper : MonoBehaviour
                 transform.localScale =
                     Vector3.MoveTowards(transform.localScale, Vector3.one * minScale, shrinkSpeed * Time.deltaTime);
 
-                float distanceFromMin = Mathf.Abs(minScale - transform.localScale.magnitude);
-                bool isCloseEnough = distanceFromMin <= doneGrowingThreshold;
+                float distanceFromMax = Mathf.Abs(maxScale - transform.localScale.x);
+                bool isCloseEnough = distanceFromMax <= doneGrowingThreshold;
 
-                //if (isCloseEnough)
-                //{
-                //    transform.localScale = minScale * Vector3.one;
-                //    isShrinking = false;
-                //}
+                if (isCloseEnough)
+                {
+                    transform.localScale = minScale * Vector3.one;
+                    isShrinking = false;
+                }
             }
 
         }
