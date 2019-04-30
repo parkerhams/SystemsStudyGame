@@ -1042,6 +1042,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bush_3
       objectReference: {fileID: 0}
+    - target: {fileID: 155120, guid: b8f0077db4a88024c80002830485a70b, type: 3}
+      propertyPath: m_TagString
+      value: Flora
+      objectReference: {fileID: 0}
     - target: {fileID: 405050, guid: b8f0077db4a88024c80002830485a70b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -87.2988
@@ -1623,7 +1627,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726931414}
-  m_LocalRotation: {x: 0.10569415, y: 0.8900034, z: -0.2638535, w: 0.35651663}
+  m_LocalRotation: {x: 0.10569414, y: 0.89000344, z: -0.26385346, w: 0.35651663}
   m_LocalPosition: {x: -109.38077, y: -13.907878, z: 138.35559}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
