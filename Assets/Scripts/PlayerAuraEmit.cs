@@ -2,32 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//The aura trigger surrounding the player that calls for plants to grow.
-//This script will also lerp aura colors to visualize the aura emitting
+/// <summary>
+/// The aura trigger surrounding the player that calls for plants to grow.
+/// This script will also lerp aura colors to visualize the aura emitting/not emitting 
+/// which demonstrates if the player is within tree's trigger area for growth.
+/// </summary>
 public class PlayerAuraEmit : MonoBehaviour
 {
-    [Tooltip("THe GameObject that represents the player's Aura area.")]
+    [Tooltip("The GameObject that represents the player's Aura area.")]
     [SerializeField]
     private GameObject auraSphere;
 
-    [Tooltip("The float value of how quickly colors will lerp once aura is activated")]
+    [Tooltip("The float value of how quickly aura colors will lerp once aura is aemitting/not emitting - aura used for debug purposes")]
     [SerializeField]
-    float lerpSpeed = 1f;
+    private float lerpSpeed = 1f;
 
-    [Tooltip("The Color of the deactivated aura")]
+    [Tooltip("The Color of the aura not emitting - aura used for debug purposes")]
     [SerializeField]
-    Color deactivatedAuraColor;
+    Color notEmittingAuraColor;
 
-    [Tooltip("The Color to show aura has been activated")]
+    [Tooltip("The Color to show aura is emitting - aura used for debug purposes")]
     [SerializeField]
-    Color activatedAuraColor;
+    Color emittingAuraColor;
 
-    [Tooltip("Lerp time value")]
+    [Tooltip("Lerp time is the interpolator for aura color transitions - aura used for debug purposes")]
     [SerializeField]
-    float startLerpTime;
+    private float startLerpTime;
 
     [SerializeField]
-    ParticleSystem auraParticles;
+    private ParticleSystem auraParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -43,8 +46,6 @@ public class PlayerAuraEmit : MonoBehaviour
             ActivateAuraColorLerp();
 
             auraParticles.Play();
-
-            Debug.Log("player is hitting flora!!!");
         }       
     }
 
@@ -55,19 +56,18 @@ public class PlayerAuraEmit : MonoBehaviour
             //change mat opacity/color to show deactivated
             DeactivateAuraColorLerp();
             auraParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-            Debug.Log("player is no longer touching flora area");
         }
     }
 
     void ActivateAuraColorLerp()
     {
         float t = (Time.time - startLerpTime) * lerpSpeed;
-        GetComponent<Renderer>().material.color = Color.Lerp(deactivatedAuraColor, activatedAuraColor, t);
+        GetComponent<Renderer>().material.color = Color.Lerp(notEmittingAuraColor, emittingAuraColor, t);
     }
 
     void DeactivateAuraColorLerp()
     {
         float t = (Time.time - startLerpTime) * lerpSpeed;
-        GetComponent<Renderer>().material.color = Color.Lerp(activatedAuraColor, deactivatedAuraColor, t);
+        GetComponent<Renderer>().material.color = Color.Lerp(emittingAuraColor, notEmittingAuraColor, t);
     }
 }

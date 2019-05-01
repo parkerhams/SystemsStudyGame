@@ -53,10 +53,6 @@ public class ScaleLerper : MonoBehaviour
 
     private bool isShrinking, isGrowing;
 
-    private const string shrinkCoroutine = nameof(Grow);
-    private const string growCoroutine = nameof(Shrink);
-
-
     /// <summary>
     /// The smallest scale the object should be, as defined by it's starting scale set in the editor.
     /// </summary>
@@ -137,10 +133,8 @@ public class ScaleLerper : MonoBehaviour
 
             else if (!isGrowing)
             {
-                Debug.Log("isGrowing is false");
-                transform.localScale =
+                transform.localScale = 
                     Vector3.MoveTowards(transform.localScale, Vector3.one * minScale, shrinkSpeed * Time.deltaTime);
-
                 float distanceFromMax = Mathf.Abs(maxScale - transform.localScale.x);
                 bool isCloseEnough = distanceFromMax <= doneGrowingThreshold;
 
@@ -150,7 +144,6 @@ public class ScaleLerper : MonoBehaviour
                     isShrinking = false;
                 }
             }
-
         }
     }
 
@@ -158,52 +151,5 @@ public class ScaleLerper : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         minScale = transform.localScale.magnitude;
-    }
-
-    private IEnumerator Grow()
-    {
-        isGrowing = true;
-        PlayNewAudioClip(auraAudioClip);
-        while (!IsAtMaxScale)
-        {
-             scalableObject.transform.localScale = Vector3.MoveTowards(transform.localScale, Vector3.one * maxScale, growthSpeed * Time.deltaTime);
-            //scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, maxScale * Vector3.one, growthSpeed * Time.deltaTime);
-            float distanceFromMax = Mathf.Abs(maxScale - transform.localScale.x);
-            bool isCloseEnough = distanceFromMax <= doneGrowingThreshold;
-
-            if (isCloseEnough)
-            {
-                transform.localScale = maxScale * Vector3.one;               
-            }
-            yield return null;
-        }
-
-        isGrowing = false;
-
-        growthCompletedParticles.Play();
-        PlayNewAudioClip(completedGrowingAudioClip);
-        yield return new WaitForSeconds(particleDuration);
-        growthCompletedParticles.Stop();
-    }
-
-    private IEnumerator Shrink()
-    {
-        isShrinking = true;
-        StopAudioClips(auraAudioClip);
-        while(!IsAtMinScale)
-        {
-            scalableObject.transform.localScale = Vector3.Lerp(transform.localScale, minScale * Vector3.one, shrinkSpeed * Time.deltaTime);
-
-            float distanceFromMin = Mathf.Abs(minScale - transform.localScale.magnitude);
-            bool isCloseEnough = distanceFromMin <= doneGrowingThreshold;
-
-            if (isCloseEnough)
-            {
-                transform.localScale = minScale * Vector3.one;
-            }
-            yield return null;
-        }
-
-        isShrinking = false;
     }
 }
