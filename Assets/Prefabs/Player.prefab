@@ -12,14 +12,13 @@ GameObject:
   - component: {fileID: 742335237}
   - component: {fileID: 742335236}
   - component: {fileID: 742335235}
-  - component: {fileID: 4772215835215835200}
   m_Layer: 0
   m_Name: Aura
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &742335234
 Transform:
   m_ObjectHideFlags: 0
@@ -59,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 30c0afdc372151b438e78266a23c194b, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,29 +86,54 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742335233}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4772215835215835200
+--- !u!1 &527736228108027660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8340571997953140775}
+  - component: {fileID: 3024671644637412161}
+  m_Layer: 0
+  m_Name: CursorHider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8340571997953140775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527736228108027660}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.525757, y: 9.1490135, z: 15.781982}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3018280269225403221}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3024671644637412161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742335233}
+  m_GameObject: {fileID: 527736228108027660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dd25ed6d7582a24e931f2361483106a, type: 3}
+  m_Script: {fileID: 11500000, guid: a592d744c449756439cc1ef84a96a0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  auraSphere: {fileID: 742335233}
-  lerpSpeed: 1
-  deactivatedAuraColor: {r: 0.8679245, g: 0.27429688, b: 0.27429688, a: 0.16862746}
-  activatedAuraColor: {r: 0.27843136, g: 0.8784314, b: 0.66041744, a: 0.69803923}
-  startLerpTime: 3
-  auraParticles: {fileID: 4990149610982754198}
 --- !u!1 &3018280269225403247
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +151,7 @@ GameObject:
   - component: {fileID: 3018280269225403241}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,7 +170,7 @@ Transform:
   - {fileID: 3018280269830029216}
   - {fileID: 4990149610982754152}
   - {fileID: 742335234}
-  - {fileID: 5786692084810556514}
+  - {fileID: 8340571997953140775}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2489,49 +2513,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &4054229096462498431
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5786692084810556514}
-  - component: {fileID: 2290780133876813089}
-  m_Layer: 0
-  m_Name: CursorHide
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5786692084810556514
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4054229096462498431}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3018280269225403221}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2290780133876813089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4054229096462498431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a592d744c449756439cc1ef84a96a0b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7871000578065318208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2539,6 +2520,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3018280269225403221}
     m_Modifications:
+    - target: {fileID: 2917202205030483497, guid: 2f206d5b35599ea47b8b3936ec90f290,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerParticleTrails
+      objectReference: {fileID: 0}
     - target: {fileID: 2917202205030483496, guid: 2f206d5b35599ea47b8b3936ec90f290,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2594,52 +2580,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2917202205030483496, guid: 2f206d5b35599ea47b8b3936ec90f290,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2917202205030483496, guid: 2f206d5b35599ea47b8b3936ec90f290,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2917202205030483496, guid: 2f206d5b35599ea47b8b3936ec90f290,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2917202205030483497, guid: 2f206d5b35599ea47b8b3936ec90f290,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerParticleTrails
-      objectReference: {fileID: 0}
-    - target: {fileID: 2917202205030483670, guid: 2f206d5b35599ea47b8b3936ec90f290,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2917202204804012761, guid: 2f206d5b35599ea47b8b3936ec90f290,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2917202205591853916, guid: 2f206d5b35599ea47b8b3936ec90f290,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f206d5b35599ea47b8b3936ec90f290, type: 3}
 --- !u!4 &4990149610982754152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2917202205030483496, guid: 2f206d5b35599ea47b8b3936ec90f290,
-    type: 3}
-  m_PrefabInstance: {fileID: 7871000578065318208}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4990149610982754198 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2917202205030483670, guid: 2f206d5b35599ea47b8b3936ec90f290,
     type: 3}
   m_PrefabInstance: {fileID: 7871000578065318208}
   m_PrefabAsset: {fileID: 0}

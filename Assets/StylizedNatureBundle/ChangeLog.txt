@@ -1,0 +1,23 @@
+You will find here the version of the package and the changes that have been made. 
+
+VERSION 1.1.1
+
+* Fix
+	- Compatibility with 2018.3 (PostProcessing / MinDrawer update)
+
+
+
+VERSION 1.1
+
+* Fixes
+   - Skybox material in the demo scene01 had no texture
+
+* Improvements
+   - Indirect Instancing compatibility for all vegetation related shaders
+   - 2 new demo scenes (09 and 10)
+
+* New Prefabs
+   - 4 new GrassFlower prefabs with LODs
+
+* New Shaders
+   - GrassFlower shader with two flower color variations 
