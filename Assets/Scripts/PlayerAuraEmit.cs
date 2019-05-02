@@ -68,6 +68,8 @@ public class PlayerAuraEmit : MonoBehaviour
     void DeactivateAuraColorLerp()
     {
         float t = (Time.time - startAuraChangeTime) * auraColorLerpSpeed;
+        //actual aura won't just be a plain material color in final version - 
+        //mat color change mostly just to test if it works/does not work/debug
         GetComponent<Renderer>().material.color = Color.Lerp(emittingAuraColor, notEmittingAuraColor, t);
     }
 }
