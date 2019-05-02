@@ -13,21 +13,21 @@ public class PlayerAuraEmit : MonoBehaviour
     [SerializeField]
     private GameObject auraSphere;
 
-    [Tooltip("The float value of how quickly aura colors will lerp once aura is aemitting/not emitting - aura used for debug purposes")]
+    [Tooltip("The float value of how quickly aura colors will change once player has entered/exited trigger area")]
     [SerializeField]
-    private float lerpSpeed = 1f;
+    private float auraColorLerpSpeed = 1f;
 
-    [Tooltip("The Color of the aura not emitting - aura used for debug purposes")]
+    [Tooltip("The Color of the aura when it is not inside growth trigger")]
     [SerializeField]
     Color notEmittingAuraColor;
 
-    [Tooltip("The Color to show aura is emitting - aura used for debug purposes")]
+    [Tooltip("The Color to show aura when it IS inside growth trigger")]
     [SerializeField]
     Color emittingAuraColor;
 
-    [Tooltip("Lerp time is the interpolator for aura color transitions - aura used for debug purposes")]
+    [Tooltip("Lerp time is the interpolator for aura color transitions once player enters/exits")]
     [SerializeField]
-    private float startLerpTime;
+    private float startAuraChangeTime;
 
     [SerializeField]
     private ParticleSystem auraParticles;
@@ -35,7 +35,7 @@ public class PlayerAuraEmit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startLerpTime = Time.time;
+        startAuraChangeTime = Time.time;
     }
 
     private void OnTriggerStay(Collider other)
@@ -61,13 +61,13 @@ public class PlayerAuraEmit : MonoBehaviour
 
     void ActivateAuraColorLerp()
     {
-        float t = (Time.time - startLerpTime) * lerpSpeed;
+        float t = (Time.time - startAuraChangeTime) * auraColorLerpSpeed;
         GetComponent<Renderer>().material.color = Color.Lerp(notEmittingAuraColor, emittingAuraColor, t);
     }
 
     void DeactivateAuraColorLerp()
     {
-        float t = (Time.time - startLerpTime) * lerpSpeed;
+        float t = (Time.time - startAuraChangeTime) * auraColorLerpSpeed;
         GetComponent<Renderer>().material.color = Color.Lerp(emittingAuraColor, notEmittingAuraColor, t);
     }
 }
