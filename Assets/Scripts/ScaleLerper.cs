@@ -21,12 +21,12 @@ public class ScaleLerper : MonoBehaviour
     private GameObject scalableObject;
 
     [Tooltip("how quickly it grows")]
-    //[Range(0,1)]
+    [Range(0,1)]
     [SerializeField]
     private float growthSpeed = 0.4f;
 
     [Tooltip("how quickly it shrinks")]
-    //[Range(0, 1)]
+    [Range(0, 1)]
     [SerializeField]
     private float shrinkSpeed = 0.5f;
 
