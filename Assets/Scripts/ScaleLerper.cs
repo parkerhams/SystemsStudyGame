@@ -81,41 +81,41 @@ public class ScaleLerper : MonoBehaviour
 
     }
 
+    //think about abstracting the trigger volumes to check one method on enter/exit
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Player has ENTERED!");
         if (other.gameObject.CompareTag("Player") && !IsAtMaxScale)
         {
             // Grow!
-            //StopAllCoroutines();
             isShrinking = false;
             isGrowing = true;
-            //if (!isGrowing)
-            //    StartCoroutine(growCoroutine);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Player has EXITED!");
            if (other.gameObject.CompareTag("Player") && !IsAtMinScale)
            {
             // Shrink!
-            //StopAllCoroutines();
                 isGrowing = false;
                 isShrinking = true;
-                //if (!isShrinking)
-                //    StartCoroutine(shrinkCoroutine);
            }
     }
 
+    /// <summary>
+    /// Checking the isGrowing variables to then scale the gameobject's transform to the maxScale over the growthSpeed interpolator.
+    /// isCloseEnough are temp variables to see if the object's scale is within the doneGrowingThreshhold, then set the scale to max.
+    /// This is to avoid the object slowing down as it reaches the maxScale, or the player thinking it is as large as it can be only
+    /// to have it scale downwards against expectations. If !isGrowing, scale the gameobject's transform to the minScale over the 
+    /// growthSpeed interpolator.
+    /// </summary>
     private void FixedUpdate()
     {
         if (!IsAtMaxScale)
         {
             if (isGrowing)
             {
-                //PlayNewAudioClip(auraAudioClip);
+                PlayNewAudioClip(auraAudioClip);
                 transform.localScale =
                     Vector3.MoveTowards(transform.localScale, Vector3.one * maxScale, growthSpeed * Time.deltaTime);
 
@@ -124,11 +124,13 @@ public class ScaleLerper : MonoBehaviour
 
                 if (isCloseEnough)
                 {
+                    StopAudioClips(auraAudioClip);
                     transform.localScale = maxScale * Vector3.one;
                     isGrowing = false;
                     growthCompletedParticles.Play();
                     PlayNewAudioClip(completedGrowingAudioClip);
                 }
+                StopAudioClips(auraAudioClip);
             }
 
             else if (!isGrowing)
