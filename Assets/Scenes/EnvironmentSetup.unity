@@ -52,7 +52,7 @@ LightmapSettings:
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
     m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 10
     m_Resolution: 2
@@ -63,7 +63,8 @@ LightmapSettings:
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
     m_Padding: 2
-    m_LightmapParameters: {fileID: 0}
+    m_LightmapParameters: {fileID: 15201, guid: 0000000000000000f000000000000000,
+      type: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
     m_FinalGather: 0
@@ -698,7 +699,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-187354
+  m_Name: pb_Mesh-4824
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -1627,7 +1628,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726931414}
-  m_LocalRotation: {x: 0.10569414, y: 0.89000344, z: -0.26385346, w: 0.3565166}
+  m_LocalRotation: {x: 0.10569414, y: 0.89000344, z: -0.26385346, w: 0.35651663}
   m_LocalPosition: {x: -109.38077, y: -13.907878, z: 138.35559}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2022,5 +2023,40 @@ PrefabInstance:
       propertyPath: freeLookCam
       value: 
       objectReference: {fileID: 539891927}
+    - target: {fileID: 4772215835215835200, guid: f4909d817bc0fa347baa061f81c9b955,
+        type: 3}
+      propertyPath: notEmittingAuraColor.r
+      value: 0.5566038
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772215835215835200, guid: f4909d817bc0fa347baa061f81c9b955,
+        type: 3}
+      propertyPath: notEmittingAuraColor.g
+      value: 0.51189566
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772215835215835200, guid: f4909d817bc0fa347baa061f81c9b955,
+        type: 3}
+      propertyPath: notEmittingAuraColor.b
+      value: 0.49621752
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772215835215835200, guid: f4909d817bc0fa347baa061f81c9b955,
+        type: 3}
+      propertyPath: emittingAuraColor.a
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772215835215835200, guid: f4909d817bc0fa347baa061f81c9b955,
+        type: 3}
+      propertyPath: emittingAuraColor.r
+      value: 0.13830544
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772215835215835200, guid: f4909d817bc0fa347baa061f81c9b955,
+        type: 3}
+      propertyPath: emittingAuraColor.g
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772215835215835200, guid: f4909d817bc0fa347baa061f81c9b955,
+        type: 3}
+      propertyPath: emittingAuraColor.b
+      value: 0.50676554
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4909d817bc0fa347baa061f81c9b955, type: 3}
