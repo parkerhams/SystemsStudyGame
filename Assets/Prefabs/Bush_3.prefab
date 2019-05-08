@@ -15,12 +15,13 @@ GameObject:
   - component: {fileID: 7140944419633577505}
   - component: {fileID: 5532593975109538248}
   - component: {fileID: 7189843353725901542}
+  - component: {fileID: 1107148569}
   m_Layer: 0
   m_Name: Bush_3
-  m_TagString: Untagged
+  m_TagString: Flora
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &405050
 Transform:
@@ -219,9 +220,23 @@ MonoBehaviour:
   growthSpeed: 0.5
   shrinkSpeed: 0.3
   doneGrowingThreshold: 0.001
-  auraAudioClip: {fileID: 0}
-  completedGrowingAudioClip: {fileID: 0}
+  auraAudioClip: {fileID: 8300000, guid: 6945ed38e6d4ca54bb16e7606a68ddfd, type: 3}
+  completedGrowingAudioClip: {fileID: 8300000, guid: 533d09b2e94e0c54caf6f875f34858d8,
+    type: 3}
   growthCompletedParticles: {fileID: 7613966883870752949}
+--- !u!135 &1107148569
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155120}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.0263007
+  m_Center: {x: 0.3946637, y: 2.0263007, z: -0.14503276}
 --- !u!1001 &4742789007226717795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -233,6 +248,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DoneGrowingParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917202205030483497, guid: 09231d29a67bc3045ae28c16969771c8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2917202205030483496, guid: 09231d29a67bc3045ae28c16969771c8,
         type: 3}
@@ -288,6 +308,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917202204804012764, guid: 09231d29a67bc3045ae28c16969771c8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09231d29a67bc3045ae28c16969771c8, type: 3}
